@@ -1,0 +1,16 @@
+{
+  "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc",
+  "short_name": "Dừa Sáp Cầu Kè",
+  "description": "Chuyên sỉ & lẻ Dừa Sáp Cầu Kè Trà Vinh Loại 1 đặc ruột kẹo sợi. Bao sáp 1 đổi 1 từng trái, Freeship từ 2 trái.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf8f3",
+  "theme_color": "#1b3b24",
+  "icons": [
+    {
+      "src": "images/doi_dua.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+name: 🥥 Daily Auto-SEO & Sitemap Engine (Dừa Sáp Trà Vinh V3.0)
+
+on:
+  schedule:
+    # Chạy tự động lúc 06:30 sáng mỗi ngày theo giờ Việt Nam (23:30 UTC ngày hôm trước)
+    - cron: '30 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Dependencies
+        run: pip install requests
+
+      - name: 🚀 Run Daily SEO Engine
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python seo_daily_engine.py
+
+      - name: 💾 Commit & Push SEO Updates (Triggers Netlify Auto-Deploy)
+        run: |
+          git config user.name "Unlive666"
+          git config user.email "44981882+Unlive666@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(seo): Auto-SEO daily content & sitemap update [$(date +'%Y-%m-%d')]"
+            git push origin main
+          fi

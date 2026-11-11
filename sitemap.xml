@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://duasaptravinh.netlify.app/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://duasaptravinh.netlify.app/images/doi_dua.jpg</image:loc>
+      <image:title>Dừa Sáp Trà Vinh Cầu Kè Loại 1 Đặc Ruột</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://duasaptravinh.netlify.app/images/dua_sap_size_lon_vip.jpg</image:loc>
+      <image:title>Dừa Sáp Cầu Kè Size Lớn VIP Cơm Dày</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://duasaptravinh.netlify.app/images/keo_soi.jpg</image:loc>
+      <image:title>Dừa Sáp Kẹo Sợi Trà Vinh</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://duasaptravinh.netlify.app/images/step2_nut_doi.jpg</video:thumbnail_loc>
+      <video:title>Cận Cảnh Bổ Dừa Sáp Cầu Kè Trà Vinh Loại 1 Kéo Sợi Đặc Ruột</video:title>
+      <video:description>Video thực tế gõ nhẹ sống dao tách đôi gáo dừa sáp loại 1 tại vườn Cầu Kè Trà Vinh lộ lớp cơm dày trắng ngần và nước sệt kẹo.</video:description>
+      <video:content_loc>https://duasaptravinh.netlify.app/images/video_dua_sap_moi.mp4</video:content_loc>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/ba-bau-an-dua-sap-co-tot-khong.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/cach-an-va-bao-quan-dua-sap.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/cach-phan-biet-dua-sap-that-gia.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/dua-sap-cau-ke-tra-vinh-chinh-goc.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/gia-dua-sap-tra-vinh.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

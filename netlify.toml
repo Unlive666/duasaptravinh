@@ -1,0 +1,43 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[images]
+  remote_images = ['https://img\.vietqr\.io/.*']
+
+# 1. Proxy API thẳng sang Render Cloud (Zero CORS Preflight, nhanh hơn 300ms)
+[[redirects]]
+  from = "/api/*"
+  to = "https://dua-sap-chatbot.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# 2. Tối ưu đường dẫn rút gọn cho Netlify Image CDN (Tự động nén AVIF/WebP)
+[[redirects]]
+  from = "/cdn-img/*"
+  to = "/.netlify/images?url=/images/:splat&w=720&q=82"
+  status = 200
+  force = true
+
+# 3. Edge Caching & Bảo mật cho HTML/Sitemap (Gom fbclid/utm_* vào chung 1 cache key)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Netlify-Vary = "query=size|qty"
+    Netlify-CDN-Cache-Control = "public, s-maxage=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Netlify-Vary = "query=size|qty"
+    Netlify-CDN-Cache-Control = "public, s-maxage=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
