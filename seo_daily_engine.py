@@ -544,9 +544,10 @@ def render_article_html(topic: dict, today_iso: str) -> str:
     header {{ background: rgba(250, 246, 238, 0.96); backdrop-filter: blur(10px); border-bottom: 1.5px solid var(--border-soft); padding: 10px 0; position: sticky; top: 0; z-index: 100; }}
     header .nav {{ display: flex; justify-content: space-between; align-items: center; max-width: 840px; margin: 0 auto; padding: 0 18px; gap: 10px; }}
     .brand {{ display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }}
+    .brand > div {{ min-width: 0; }}
     .brand svg {{ width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; box-shadow: 0 3px 10px rgba(22, 56, 34, 0.2); }}
-    .brand-title {{ font-family: 'Lora', serif; font-weight: 700; font-size: 1.08rem; color: var(--leaf-900); display: block; line-height: 1.2; }}
-    .brand-sub {{ font-size: 0.72rem; color: var(--coco-muted); display: block; line-height: 1.2; }}
+    .brand-title {{ font-family: 'Lora', serif; font-weight: 700; font-size: 1.08rem; color: var(--leaf-900); display: block; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
+    .brand-sub {{ font-size: 0.72rem; color: var(--coco-muted); display: block; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
     .nav-cta {{ display: flex; align-items: center; gap: 8px; flex-shrink: 0; }}
     .btn-phone {{ padding: 8px 13px; border-radius: 99px; background: var(--leaf-100); color: var(--leaf-800); font-weight: 700; font-size: 0.82rem; white-space: nowrap; text-decoration: none; }}
     .btn-order-top {{ background: var(--earth-gold); color: #fff; padding: 8px 16px; border-radius: 99px; font-size: 0.84rem; font-weight: 700; white-space: nowrap; text-decoration: none; }}
@@ -565,7 +566,7 @@ def render_article_html(topic: dict, today_iso: str) -> str:
     .sticky-bar {{ position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); border-top: 1px solid var(--border-soft); padding: 8px 12px; display: flex; gap: 8px; justify-content: center; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); }}
     .s-btn {{ flex: 1; max-width: 220px; padding: 11px 8px; border-radius: 99px; font-weight: 700; font-size: 0.82rem; text-align: center; text-decoration: none; white-space: nowrap; }}
     footer {{ background: var(--leaf-900); border-top: 2px solid var(--gold-ring); color: #e2d7c2; text-align: center; padding: 34px 18px; font-size: 0.86rem; }}
-    @media (max-width: 600px) {{ article {{ padding: 22px 16px; }} h1 {{ font-size: 1.55rem !important; }} .btn-phone {{ display: none; }} .brand-title {{ font-size: 0.98rem; }} }}
+    @media (max-width: 600px) {{ header .nav {{ padding: 0 12px; gap: 8px; }} article {{ padding: 22px 16px; }} h1 {{ font-size: 1.55rem !important; }} .btn-phone {{ display: none; }} .brand svg {{ width: 34px; height: 34px; }} .brand-title {{ font-size: 0.94rem; }} .brand-sub {{ font-size: 0.66rem; }} .btn-order-top {{ padding: 7px 12px; font-size: 0.78rem; }} }}
   </style>
 </head>
 <body>

@@ -276,9 +276,10 @@
       min-height: 68px;
       padding-top: 8px;
       padding-bottom: 8px;
-      gap: 10px;
+      gap: 12px;
     }
-    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; min-width: 0; }
+    .brand > div { min-width: 0; }
     .brand-icon {
       width: 42px;
       height: 42px;
@@ -293,15 +294,27 @@
     .brand-title {
       font-family: 'Lora', serif;
       font-weight: 700;
-      font-size: 1.18rem;
+      font-size: 1.15rem;
       color: var(--leaf-900);
       display: block;
       line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .brand-sub { font-size: 0.75rem; color: var(--coco-muted); display: block; line-height: 1.25; }
-    .nav-links { display: flex; gap: 22px; font-size: 0.9rem; font-weight: 700; color: var(--coco-brown); white-space: nowrap; }
+    .brand-sub {
+      font-size: 0.74rem;
+      color: var(--coco-muted);
+      display: block;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav-links { display: flex; gap: 18px; font-size: 0.88rem; font-weight: 700; color: var(--coco-brown); white-space: nowrap; flex-shrink: 0; }
     .nav-links a:hover { color: var(--leaf-700); }
     .nav-cta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    header.is-compact .nav-links { display: none; }
     .btn-fb-top {
       padding: 8px 13px;
       border-radius: 99px;
@@ -963,8 +976,15 @@
       gap: 4px;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 1160px) {
+      .nav-links { gap: 14px; font-size: 0.84rem; }
+      .btn-fb-top, .btn-phone { padding: 7px 11px; font-size: 0.8rem; }
+      .btn-order-top { padding: 8px 13px; font-size: 0.82rem; }
+    }
+    @media (max-width: 1060px) {
       .nav-links { display: none; }
+    }
+    @media (max-width: 920px) {
       .hero-grid, .order-box { grid-template-columns: 1fr; }
       .order-right { border-left: none; border-top: 1px solid var(--border-soft); }
       .pricing-grid, .video-3grid, .guide-3grid {
@@ -977,11 +997,11 @@
     @media (max-width: 600px) {
       .top-bar { font-size: 0.76rem; padding: 6px 10px; }
       .nav-bar { min-height: 58px; padding-top: 6px; padding-bottom: 6px; gap: 6px; }
-      .brand { gap: 8px; }
+      .brand { flex-shrink: 1; gap: 8px; }
       .brand-icon { width: 36px; height: 36px; }
       .brand-icon svg { width: 36px; height: 36px; }
-      .brand-title { font-size: 1.02rem; white-space: nowrap; }
-      .brand-sub { font-size: 0.68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 155px; }
+      .brand-title { font-size: 1rem; }
+      .brand-sub { font-size: 0.68rem; }
       .btn-phone { display: none; }
       .btn-fb-top { padding: 7px 10px; font-size: 0.76rem; }
       .btn-order-top { padding: 8px 13px; font-size: 0.8rem; }
@@ -994,12 +1014,14 @@
       .qr-img-box { width: 105px; height: 105px; }
     }
     @media (max-width: 440px) {
-      .container { padding: 0 14px; }
-      .brand-title { font-size: 0.94rem; }
-      .brand-sub { max-width: 135px; font-size: 0.66rem; }
+      .container { padding: 0 12px; }
+      .brand-icon { width: 34px; height: 34px; }
+      .brand-icon svg { width: 34px; height: 34px; }
+      .brand-title { font-size: 0.92rem; }
+      .brand-sub { font-size: 0.65rem; }
       .btn-fb-top span { display: none; }
-      .btn-fb-top { padding: 8px; }
-      .btn-order-top { padding: 8px 12px; font-size: 0.78rem; }
+      .btn-fb-top { padding: 7px; }
+      .btn-order-top { padding: 7px 11px; font-size: 0.78rem; }
       .hero h1 { font-size: 1.68rem; }
       .hero-btns a { max-width: 100%; font-size: 0.88rem; }
       .m-btn { font-size: 0.71rem; padding: 9px 2px; min-width: 0; }
@@ -1982,6 +2004,28 @@
           if (saved.address) document.getElementById('custAddress').value = saved.address;
         }
       } catch (e) {}
+
+      // 2b. Adaptive header overflow guard (protects brand text under any zoom / font scaling)
+      const siteHeader = document.querySelector('header');
+      const navBarEl = document.querySelector('.nav-bar');
+      let overflowWidth = 0;
+      function syncHeaderFit() {
+        if (!siteHeader || !navBarEl) return;
+        const w = navBarEl.clientWidth;
+        if (siteHeader.classList.contains('is-compact')) {
+          if (w <= overflowWidth) return;
+          siteHeader.classList.remove('is-compact');
+        }
+        if (navBarEl.scrollWidth > navBarEl.clientWidth + 1) {
+          overflowWidth = navBarEl.clientWidth;
+          siteHeader.classList.add('is-compact');
+        }
+      }
+      if (siteHeader && navBarEl && 'ResizeObserver' in window) {
+        new ResizeObserver(syncHeaderFit).observe(navBarEl);
+        document.fonts?.ready?.then(syncHeaderFit);
+        syncHeaderFit();
+      }
 
       // 3. Respect prefers-reduced-motion for autoplay videos
       const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
