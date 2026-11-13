@@ -26,7 +26,7 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SITE_URL = "https://duasaptravinh.netlify.app"
+SITE_URL = "https://duasaptravinh.vercel.app"
 INDEXNOW_KEY = "4b9e7a2d8f1c6e3b5a0d9c8e7f6a5b4c"
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
@@ -608,7 +608,7 @@ def render_article_html(topic: dict, today_iso: str) -> str:
       </p>
 
       <div style="border-radius: 16px; overflow: hidden; margin-bottom: 24px;">
-        <img src="/.netlify/images?url=/{topic['hero_img']}&w=840&q=82" alt="{topic['h1']}" width="840" height="420" fetchpriority="high" decoding="async" style="width: 100%; max-height: 420px; object-fit: cover; display: block;">
+        <img src="/{topic['hero_img']}" alt="{topic['h1']}" width="840" height="420" fetchpriority="high" decoding="async" style="width: 100%; max-height: 420px; object-fit: cover; display: block;">
       </div>
 
       {sections_html}
@@ -803,7 +803,7 @@ def rebuild_sitemap(today_iso: str) -> list:
 def ping_indexnow(url_list: list) -> int:
     """Ping IndexNow API (Bing, Cốc Cốc, Yandex, Naver, Seznam) để lập chỉ mục tức thì."""
     payload = {
-        "host": "duasaptravinh.netlify.app",
+        "host": "duasaptravinh.vercel.app",
         "key": INDEXNOW_KEY,
         "keyLocation": f"{SITE_URL}/{INDEXNOW_KEY}.txt",
         "urlList": url_list
@@ -917,7 +917,7 @@ def main():
         f"{article_line}"
         f"🗺️ <b>Sitemap.xml:</b> Đã đồng bộ <b>{len(all_urls)} trang</b> (<code>lastmod: {today_iso}</code>)\n"
         f"🔔 <b>IndexNow Ping:</b> HTTP <code>{ping_status}</code> (Bing / Cốc Cốc / AI Search)\n"
-        f"🌐 <b>Website:</b> <a href='{SITE_URL}'>duasaptravinh.netlify.app</a>"
+        f"🌐 <b>Website:</b> <a href='{SITE_URL}'>duasaptravinh.vercel.app</a>"
     )
     send_telegram_report(report)
     print("🎉 Hoàn tất chu trình Auto-SEO Hàng Ngày V4.0!")

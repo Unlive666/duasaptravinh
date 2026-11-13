@@ -6,7 +6,7 @@
 - Thương hiệu: Vựa Dừa Sáp Cầu Kè Trà Vinh Loại 1
 - Địa chỉ nhà vườn: Xã Hòa Tân, Huyện Cầu Kè, Tỉnh Trà Vinh (Tọa độ: 9.8789, 106.0622)
 - Hotline / Zalo đặt hàng & bảo hành 24/7: 086 678 6076
-- Website chính thức: https://duasaptravinh.netlify.app/
+- Website chính thức: https://duasaptravinh.vercel.app/
 - Fanpage Facebook chính thức: https://www.facebook.com/duasaptravinhbaosap/
 
 ## Bảng Giá Niêm Yết Tại Vườn (2026)
@@ -21,12 +21,12 @@
 - Nhận hàng mở thùng đồng kiểm trước khi thanh toán (COD).
 
 ## Hệ Thống Cẩm Nang Chuyên Sâu
-- [Bảng Giá Dừa Sáp Trà Vinh 2026 & So Sánh Giống Dừa](https://duasaptravinh.netlify.app/gia-dua-sap-tra-vinh.html)
-- [Cách Bổ Dừa Sáp 30 Giây & 5 Công Thức Chế Biến](https://duasaptravinh.netlify.app/cach-an-va-bao-quan-dua-sap.html)
-- [Bí Quyết Phân Biệt Dừa Sáp Thật Giả & Cách Lắc Dừa](https://duasaptravinh.netlify.app/cach-phan-biet-dua-sap-that-gia.html)
-- [Nguồn Gốc Dừa Sáp Cầu Kè Trà Vinh & Giá Trị Dinh Dưỡng](https://duasaptravinh.netlify.app/dua-sap-cau-ke-tra-vinh-chinh-goc.html)
-- [Dừa Sáp Trà Vinh Gửi Đi Hà Nội & Miền Bắc Mất Mấy Ngày? Có Bị Hư Không?](https://duasaptravinh.netlify.app/dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay.html)
-- [Bà Bầu Ăn Dừa Sáp Có Tốt Không? Giá Trị Dinh Dưỡng & Lưu Ý Quan Trọng](https://duasaptravinh.netlify.app/ba-bau-an-dua-sap-co-tot-khong.html)
-- [5 Cách Làm Dừa Sáp Dầm Sữa Đá, Dầm Bơ & Sinh Tố Dừa Sáp Béo Ngậy Tại Nhà](https://duasaptravinh.netlify.app/cach-lam-sinh-to-dua-sap-dam-sua-ngon.html)
-- [Kinh Nghiệm Chọn Dừa Sáp Trà Vinh Loại 1 VIP Làm Quà Biếu Sang Trọng & Ý Nghĩa](https://duasaptravinh.netlify.app/dua-sap-lam-qua-bieu-tet-bieu-sep-sang-trong.html)
-- [Mua Dừa Sáp Trà Vinh Ở TP.HCM Ở Đâu Uy Tín? Giá Gốc Tại Vườn Giao Nhanh 1 Ngày](https://duasaptravinh.netlify.app/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html)
+- [Bảng Giá Dừa Sáp Trà Vinh 2026 & So Sánh Giống Dừa](https://duasaptravinh.vercel.app/gia-dua-sap-tra-vinh.html)
+- [Cách Bổ Dừa Sáp 30 Giây & 5 Công Thức Chế Biến](https://duasaptravinh.vercel.app/cach-an-va-bao-quan-dua-sap.html)
+- [Bí Quyết Phân Biệt Dừa Sáp Thật Giả & Cách Lắc Dừa](https://duasaptravinh.vercel.app/cach-phan-biet-dua-sap-that-gia.html)
+- [Nguồn Gốc Dừa Sáp Cầu Kè Trà Vinh & Giá Trị Dinh Dưỡng](https://duasaptravinh.vercel.app/dua-sap-cau-ke-tra-vinh-chinh-goc.html)
+- [Dừa Sáp Trà Vinh Gửi Đi Hà Nội & Miền Bắc Mất Mấy Ngày? Có Bị Hư Không?](https://duasaptravinh.vercel.app/dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay.html)
+- [Bà Bầu Ăn Dừa Sáp Có Tốt Không? Giá Trị Dinh Dưỡng & Lưu Ý Quan Trọng](https://duasaptravinh.vercel.app/ba-bau-an-dua-sap-co-tot-khong.html)
+- [5 Cách Làm Dừa Sáp Dầm Sữa Đá, Dầm Bơ & Sinh Tố Dừa Sáp Béo Ngậy Tại Nhà](https://duasaptravinh.vercel.app/cach-lam-sinh-to-dua-sap-dam-sua-ngon.html)
+- [Kinh Nghiệm Chọn Dừa Sáp Trà Vinh Loại 1 VIP Làm Quà Biếu Sang Trọng & Ý Nghĩa](https://duasaptravinh.vercel.app/dua-sap-lam-qua-bieu-tet-bieu-sep-sang-trong.html)
+- [Mua Dừa Sáp Trà Vinh Ở TP.HCM Ở Đâu Uy Tín? Giá Gốc Tại Vườn Giao Nhanh 1 Ngày](https://duasaptravinh.vercel.app/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html)
