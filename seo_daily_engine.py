@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*-
 """
 =============================================================================
-🥥 DỪA SÁP TRÀ VINH - DAILY AUTO-SEO & CONTENT ENGINE V3.0 (ZERO-TOUCH)
+🥥 DỪA SÁP TRÀ VINH - DAILY AUTO-SEO & CONVERSION ENGINE V4.0 (UNSTOPPABLE)
 =============================================================================
 Chạy tự động mỗi sáng trên GitHub Actions (Unlive666/duasaptravinh):
 1. Cập nhật dấu thời gian & nhật ký mẻ dừa mới hái tại vườn Hòa Tân, Cầu Kè trên index.html.
-2. Tự động kiểm tra kho chủ đề Long-Tail SEO (30 chủ đề chuyển đổi cao) và dùng
-   Gemini 3.8 Flash (hoặc mẫu chuẩn nhà vườn nếu không có key) sinh bài viết chuyên sâu mới (.html).
-3. Tự động chèn Internal Link vào trang chủ index.html, llms.txt và cập nhật sitemap.xml.
-4. Tự động Ping IndexNow API (Bing, Cốc Cốc, Yandex, AI Search Bots) để ép lập chỉ mục tức thì.
-5. Tự động gửi báo cáo SEO hàng ngày về Telegram (@VPSCloudFly_Alert_Bot).
+2. Kho 16 chủ đề Buyer-Intent SEO thực chiến (Tỷ lệ chuyển đổi đơn hàng cao nhất)
+   + Cơ chế AI Autonomous Generator (Gemini 3.8 Flash / 3.6 Flash) tự động sinh chủ đề mới
+   khi hàng đợi tĩnh đã xuất bản hết -> Không bao giờ cạn bài mới!
+3. Trang bài viết chuẩn CRO: Tích hợp Bảng chọn nhanh 3 Size (Deep-link tự điền giỏ hàng),
+   Sticky Mobile Conversion Bar (Zalo + Gọi + Đặt 2 Trái Freeship) & Topic Cluster Links.
+4. Tự động chèn Internal Link vào index.html, llms.txt, cập nhật sitemap.xml và Ping IndexNow.
 =============================================================================
 """
 
@@ -34,7 +35,9 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 
 VN_TZ = datetime.timezone(datetime.timedelta(hours=7))
 
-# Danh sách các chủ đề Long-Tail SEO thực chiến (Tỷ lệ chuyển đổi đơn hàng cao)
+# =============================================================================
+# KHO 16 CHỦ ĐỀ BUYER-INTENT SEO CHUYỂN ĐỔI ĐƠN HÀNG TRỰC TIẾP
+# =============================================================================
 SEO_TOPICS_QUEUE = [
     {
         "slug": "dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay",
@@ -177,12 +180,273 @@ SEO_TOPICS_QUEUE = [
                 "</ul>"
             )
         ]
+    },
+    {
+        "slug": "mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh",
+        "label": "🏙️ Mua Dừa Sáp tại TP.HCM Giao 1 Ngày",
+        "title": "Mua Dừa Sáp Trà Vinh Ở TP.HCM Ở Đâu Uy Tín? Giá Gốc Tại Vườn Giao Nhanh 1 Ngày",
+        "meta_desc": "Địa chỉ đặt mua Dừa Sáp Cầu Kè Trà Vinh Loại 1 chính gốc giao tận nhà TP.HCM (Sài Gòn), Bình Dương, Đồng Nai chỉ 1 ngày. Giá gốc tại vườn từ 99k, Freeship từ 2 trái, bao sáp 1 đổi 1.",
+        "keywords": "mua dừa sáp ở tphcm, dừa sáp trà vinh tại sài gòn, mua dừa sáp cầu kè ở đâu uy tín, dừa sáp giao nhanh tphcm, giá dừa sáp tphcm",
+        "h1": "Mua Dừa Sáp Trà Vinh Ở TP.HCM Ở Đâu Ngon Chuẩn Cầu Kè? Giá Gốc Nhà Vườn Giao 1 Ngày",
+        "hero_img": "images/doi_dua.jpg",
+        "faq_q1": "Đặt dừa sáp từ vườn Cầu Kè gửi lên TP.HCM mất bao lâu?",
+        "faq_a1": "Vựa cắt dừa mới mỗi sáng tại Hòa Tân (Cầu Kè, Trà Vinh) gửi tuyến nhanh lên TP.HCM, Thủ Đức, Bình Dương và Đồng Nai chỉ mất 1 - 2 ngày là giao tận tay. Mua từ 2 trái được Miễn Phí Ship 100%.",
+        "faq_q2": "Nhận dừa tại TP.HCM có được kiểm tra hàng và bảo hành không sáp không?",
+        "faq_a2": "Dạ có! Anh chị nhận hàng được kiểm tra trước khi thanh toán COD. Khi bổ ra nếu lỡ gặp trái không sáp hoặc sáp mỏng, chỉ cần chụp hình gửi Zalo 086 678 6076 là nhà vườn gửi bù trái mới tận nơi miễn phí.",
+        "sections": [
+            (
+                "1. Vì Sao Khách Hàng TP.HCM Chọn Đặt Trực Tiếp Từ Vựa Cầu Kè Thay Vì Mua Trôi Nổi?",
+                "<p>Tại TP.HCM, không ít nơi rao bán dừa sáp giá rẻ nhưng thực chất là <em>dừa sáp lai loại 2, loại 3</em> (cơm mỏng dính, nhiều nước lỏng) hoặc dừa tồn kho lâu ngày bị gắt dầu. Khi đặt trực tiếp từ <strong>Vựa Dừa Sáp Cầu Kè (xã Hòa Tân, Trà Vinh)</strong>, anh chị nhận được 3 lợi ích vượt trội:</p>"
+                "<ul>"
+                "<li><strong>Dừa mới rọc trong ngày:</strong> Cắt tại vườn sáng sớm, chiều lên xe gửi thẳng lên Sài Gòn nên cơm dừa giữ nguyên vị ngọt thanh và mùi thơm sữa dừa tươi mới.</li>"
+                "<li><strong>Giá gốc nhà vườn không qua trung gian:</strong> Size Nhỏ <strong>99.000đ</strong>, Size Vừa bán chạy <strong>139.000đ</strong>, Size Lớn VIP <strong>169.000đ</strong> (rẻ hơn 30% – 40% so với cửa hàng trái cây nhập lại).</li>"
+                "<li><strong>Thợ vườn lắc tuyển loại 1:</strong> Từng trái đều đạt độ sáp đặc chiếm 75% – 85% lòng gáo, nước dừa kẹo sánh kéo sợi.</li>"
+                "</ul>"
+            ),
+            (
+                "2. Lịch Giao Hàng & Chính Sách Freeship Tận Nhà Các Quận TP.HCM",
+                "<p>Nhà vườn giao tận cửa tất cả các quận nội ngoại thành TP.HCM (Quận 1, Quận 3, Quận 7, Bình Thạnh, Gò Vấp, Tân Bình, Phú Nhuận, TP. Thủ Đức, Quận 12, Bình Tân...) và Bình Dương, Biên Hòa:</p>"
+                "<ul>"
+                "<li><strong>Mua từ 2 trái trở lên:</strong> <strong>Miễn Phí Ship Toàn Bộ</strong> (0đ phí vận chuyển).</li>"
+                "<li><strong>Đơn từ 300.000đ:</strong> Tặng kèm ngay <strong>Combo Sữa Đặc + Đậu Phộng Rang Giòn</strong> để anh chị bổ ra là dầm đá ăn liền.</li>"
+                "<li><strong>Thanh toán linh hoạt:</strong> Nhận hàng kiểm tra mới trả tiền mặt (COD) hoặc quét VietQR ACB tiện lợi.</li>"
+                "</ul>"
+            )
+        ]
+    },
+    {
+        "slug": "cach-bo-dua-sap-cuc-de-khong-can-dao-to",
+        "label": "🔪 Mẹo Bổ Dừa Sáp 30 Giây Cực Nhàn",
+        "title": "Cách Bổ Dừa Sáp Cực Dễ Chỉ 30 Giây Bằng Sống Dao (Không Cần Chặt Mạnh, Không Đổ Nước)",
+        "meta_desc": "Hướng dẫn chi tiết cách gọt vỏ xơ và dùng sống dao gõ nhẹ tách đôi trái dừa sáp Trà Vinh chỉ trong 30 giây cực kỳ an toàn cho chị em phụ nữ, giữ trọn 100% nước dừa kẹo.",
+        "keywords": "cách bổ dừa sáp, cách đập dừa sáp, cách khui dừa sáp dễ nhất, dừa sáp vỏ xơ bổ sao, hướng dẫn gọt dừa sáp",
+        "h1": "Mẹo Bổ Dừa Sáp Chỉ Mất 30 Giây Bằng Sống Dao: Nhẹ Nhàng, An Toàn, Không Mất Giọt Nước Nào!",
+        "hero_img": "images/step2_nut_doi.jpg",
+        "faq_q1": "Chị em phụ nữ ở nhà không có dao chặt xương to có bổ được dừa sáp không?",
+        "faq_a1": "Hoàn toàn được! Gáo dừa sáp già rất giòn. Bạn không cần chặt mạnh, chỉ cần rọc lớp vỏ xơ mềm bên ngoài rồi dùng sống lưng của con dao bếp bình thường (hoặc chiếc búa nhỏ/chày đâm tiêu) gõ nhẹ 1 vòng quanh bụng gáo là dừa tự nứt đôi.",
+        "faq_q2": "Có cần đục lỗ lấy nước trước khi tách đôi trái dừa sáp không?",
+        "faq_a2": "Không cần đục lỗ! Nước dừa sáp Loại 1 rất sệt kẹo chứ không nhiều nước loãng như dừa tươi. Bạn chỉ cần kê 1 chiếc tô sạch bên dưới lúc gõ sống dao, khi gáo nứt hé ra thì hứng phần nước kẹo vào tô rồi tách đôi trái dừa.",
+        "sections": [
+            (
+                "1. Tại Sao Không Nên Dùng Dao Chặt Mạnh Trái Dừa Sáp?",
+                "<p>Nhiều anh chị lần đầu mua <strong>Dừa Sáp Trà Vinh nguyên vỏ xơ</strong> thường lấy dao phay chặt thẳng từ trên xuống giống như chặt dừa tươi uống nước. Cách này vừa tốn sức, nguy hiểm, lại dễ làm nát vụn gáo dừa rơi vào lớp cơm sáp trắng muốt bên trong.</p>"
+            ),
+            (
+                "2. Quy Trình 3 Bước Tách Đôi Gáo Dừa Sáp Đẹp Như Ngoài Hàng",
+                "<ul>"
+                "<li><strong>Bước 1 – Rọc lớp áo xơ mềm:</strong> Đặt trái dừa lên thớt, dùng dao rọc từ trên xuống dưới thành 4 – 5 múi rồi lột bỏ lớp vỏ xơ bảo vệ bên ngoài cho lộ ra chiếc gáo tròn màu nâu sẫm.</li>"
+                "<li><strong>Bước 2 – Gõ nhẹ sống dao quanh đường xích đạo:</strong> Cầm trái dừa trên lòng bàn tay (kê tô sạch phía dưới), quay ngược <strong>sống dao (lưng dao)</strong> gõ nhẹ đều tay một vòng tròn quanh giữa bụng gáo. Chỉ sau 5 – 7 nhịp gõ nhẹ, gáo dừa già sẽ tự động nứt một đường thẳng tắp!</li>"
+                "<li><strong>Bước 3 – Tách đôi & thưởng thức:</strong> Dùng mũi dao cạy nhẹ theo vết nứt để mở đôi hai nửa trái dừa trắng ngần, rưới sữa đặc và đá bào vào thưởng thức.</li>"
+                "</ul>"
+            )
+        ]
+    },
+    {
+        "slug": "dua-sap-bao-nhieu-calo-an-co-beo-khong",
+        "label": "🥗 Dừa Sáp Bao Nhiêu Calo? Ăn Có Mập Không?",
+        "title": "Dừa Sáp Bao Nhiêu Calo? Ăn Dừa Sáp Có Béo (Mập) Không? Cách Ăn Giữ Dáng Đẹp Da",
+        "meta_desc": "Giải đáp chuẩn dinh dưỡng: 100g cơm dừa sáp bao nhiêu calo, chất béo tốt MCTs trong dừa sáp Cầu Kè và 3 công thức ăn dừa sáp healthy không lo tăng cân.",
+        "keywords": "dừa sáp bao nhiêu calo, ăn dừa sáp có mập không, ăn dừa sáp có béo không, dừa sáp giảm cân, dinh dưỡng dừa sáp",
+        "h1": "100g Dừa Sáp Bao Nhiêu Calo? Bí Quyết Ăn Dừa Sáp Ngon Miệng Mà Vẫn Giữ Dáng Thon Gọn",
+        "hero_img": "images/muong_com_sap.jpg",
+        "faq_q1": "Trong 100g cơm dừa sáp nguyên chất chứa bao nhiêu calo?",
+        "faq_a1": "100g cơm dừa sáp tự nhiên cung cấp khoảng 280 - 320 kcal, chủ yếu đến từ axit béo chuỗi trung bình (MCTs) và chất xơ tự nhiên giúp no lâu và chuyển hóa năng lượng nhanh.",
+        "faq_q2": "Người đang ăn kiêng hoặc tập gym ăn dừa sáp thế nào không sợ tăng cân?",
+        "faq_a2": "Thay vì pha nhiều sữa đặc có đường, bạn hãy trộn 80g - 100g cơm dừa sáp với sữa chua Hy Lạp không đường, hạt chia và trái cây tươi làm bữa phụ trước buổi tập 60 phút.",
+        "sections": [
+            (
+                "1. Hiểu Đúng Về Lượng Calo & Chất Béo Tốt Trong Dừa Sáp",
+                "<p>Trong 100g cơm <strong>Dừa Sáp Cầu Kè nguyên bản</strong> chứa khoảng 280 – 320 kcal. Khác với chất béo bão hòa từ đồ chiên rán hay trà sữa kem cheese, chất béo trong dừa sáp là <strong>MCTs (Medium-Chain Triglycerides)</strong> — loại axit béo lành mạnh đi thẳng đến gan để tạo năng lượng tức thì, hạn chế tích tụ mỡ thừa.</p>"
+            ),
+            (
+                "2. 3 Công Thức Dừa Sáp Healthy Ít Đường Cho Chị Em Giữ Dáng",
+                "<ul>"
+                "<li><strong>Dừa sáp dầm sữa chua Hy Lạp & Việt quất:</strong> Vị chua thanh của sữa chua quyện cùng độ béo dẻo của cơm sáp tạo cảm giác no lâu suốt cả buổi chiều.</li>"
+                "<li><strong>Sinh tố dừa sáp sữa hạnh nhân (Almond Milk):</strong> Thay thế hoàn toàn sữa đặc bằng sữa hạt không đường và đá xay.</li>"
+                "<li><strong>Chia nhỏ khẩu phần thông minh:</strong> Một trái dừa sáp Size Vừa có thể chia thành 4 – 5 phần ăn, phần chưa dùng hết đóng hộp kín cất ngăn mát dùng dần trong tuần.</li>"
+                "</ul>"
+            )
+        ]
+    },
+    {
+        "slug": "so-sanh-dua-sap-cau-ke-tra-vinh-va-dua-sap-khac",
+        "label": "🌴 Dừa Sáp Cầu Kè Khác Gì Nơi Khác?",
+        "title": "Tại Sao Dừa Sáp Hòa Tân Cầu Kè (Trà Vinh) Ngon Bậc Nhất? Khác Gì Dừa Sáp Vùng Khác?",
+        "meta_desc": "Khám phá bí mật thổ nhưỡng xã Hòa Tân, huyện Cầu Kè, tỉnh Trà Vinh tạo nên trái dừa sáp chính gốc cơm dày 80% gáo, béo ngậy kéo sợi vượt trội hơn hẳn dừa sáp trồng nơi khác.",
+        "keywords": "dừa sáp cầu kè khác gì bến tre, dừa sáp hòa tân cầu kè, tại sao dừa sáp trà vinh ngon nhất, dừa sáp cấy phôi và dừa sáp tự nhiên",
+        "h1": "Vì Sao Chỉ Vùng Đất Hòa Tân (Cầu Kè, Trà Vinh) Mới Cho Ra Trái Dừa Sáp Kẹo Sợi Đỉnh Cao?",
+        "hero_img": "images/vuon_dua.jpg",
+        "faq_q1": "Mang giống dừa sáp Cầu Kè đi tỉnh khác trồng có cho cơm sáp ngon giống vậy không?",
+        "faq_a1": "Thực tế nhiều nơi từng mang giống đi trồng thử nhưng tỷ lệ lên sáp giảm mạnh hoặc cơm dừa bị xơ, kém béo. Thổ nhưỡng phù sa pha cát cổ và nguồn nước lợ nhẹ đặc thù ven sông Hậu tại Cầu Kè quyết định hương vị béo ngậy độc nhất vô nhị.",
+        "faq_q2": "Dừa sáp truyền thống tại vườn khác gì dừa sáp cấy phôi?",
+        "faq_a2": "Dừa sáp truyền thống tại các vườn lâu năm ở Hòa Tân (Cầu Kè) có hương thơm tự nhiên rất đậm, cơm sáp dẻo quánh hai tầng (ngoài giòn dẻo, trong mềm kem) và nước kẹo sánh ngọt thanh.",
+        "sections": [
+            (
+                "1. Bí Mật Thổ Nhưỡng Phù Sa Ven Sông Hậu Tại Xã Hòa Tân, Cầu Kè",
+                "<p>Không phải ngẫu nhiên mà suốt gần 100 năm qua kể từ khi cây dừa sáp đầu tiên bén rễ tại <strong>huyện Cầu Kè, tỉnh Trà Vinh</strong>, vùng đất này vẫn giữ ngôi vương tuyệt đối. Sự giao thoa giữa dòng phù sa ngọt sông Hậu, độ khoáng vi lượng trong đất thịt pha cát và nắng gió miền Tây giúp trái dừa tích tụ lớp tinh dầu thơm ngậy mà không vùng đất nào sao chép trọn vẹn được.</p>"
+            ),
+            (
+                "2. Bảng So Sánh Dừa Sáp Cầu Kè Loại 1 Tuyển Chọn Với Hàng Chợ Trôi Nổi",
+                "<ul>"
+                "<li><strong>Độ dày cơm dừa:</strong> Dừa Sáp Cầu Kè Loại 1 chiếm <strong>75% – 85% thể tích gáo</strong>; hàng loại 2/3 trôi nổi chỉ có lớp cơm mỏng 1cm kèm rất nhiều nước loãng.</li>"
+                "<li><strong>Độ dẻo & hương vị:</strong> Cơm sáp Cầu Kè chính gốc trắng phau, xắn muỗng vào dẻo quánh như kem bơ, nước kẹo kéo sợi óng ánh.</li>"
+                "<li><strong>Cam kết minh bạch:</strong> Mua trực tiếp tại Vựa Cầu Kè được <strong>bao sáp 1 đổi 1 từng trái</strong> tận nhà toàn quốc.</li>"
+                "</ul>"
+            )
+        ]
+    },
+    {
+        "slug": "gia-si-dua-sap-tra-vinh-cho-quan-sinh-to-cafe",
+        "label": "📦 Bảng Giá Sỉ Dừa Sáp Cho Quán & Đại Lý",
+        "title": "Nguồn Bỏ Sỉ Dừa Sáp Cầu Kè Trà Vinh Giá Gốc Tận Vườn Cho Quán Chè, Sinh Tố & CTV",
+        "meta_desc": "Vựa Dừa Sáp Cầu Kè (Hòa Tân, Trà Vinh) chuyên cung cấp sỉ dừa sáp loại 1 từ 10 - 100 trái/ngày cho quán sinh tố, quán chè, nhà hàng và đại lý toàn quốc. Bao sáp 100% từng trái.",
+        "keywords": "sỉ dừa sáp trà vinh, lấy sỉ dừa sáp cầu kè, nguồn hàng dừa sáp giá gốc, vựa dừa sáp trà vinh, dừa sáp cho quán sinh tố",
+        "h1": "Bỏ Sỉ Dừa Sáp Cầu Kè Trà Vinh Tận Gốc Nhà Vườn: Nguồn Hàng Ổn Định, Bao Sáp 100%",
+        "hero_img": "images/luoi_vang_4_trai.jpg",
+        "faq_q1": "Lấy bao nhiêu trái thì được tính giá sỉ nhà vườn Cầu Kè?",
+        "faq_a1": "Nhà vườn hỗ trợ chính sách ưu đãi riêng ngay từ đơn 5 - 10 trái (quà biếu/nhóm mua chung) và bảng giá sỉ tận gốc cho quán chè, quán sinh tố, đại lý nhập từ 10 - 20 trái trở lên mỗi chuyến. Liên hệ trực tiếp Zalo 086 678 6076.",
+        "faq_q2": "Quán nhập sỉ lỡ khui trúng trái sáp yếu thì vựa có đổi bù không?",
+        "faq_a2": "Chắc chắn 100%! Toàn bộ đơn sỉ cho quán và đại lý đều được Vựa bao sáp 1 đổi 1 (khấu trừ hoặc gửi bù ngay trong chuyến kế tiếp) để chủ quán tính cost ly sinh tố luôn có lãi ổn định.",
+        "sections": [
+            (
+                "1. Món 'Hái Ra Tiền' Cho Quán Giải Khát, Quán Chè & Cafe Sân Vườn",
+                "<p>Một trái <strong>Dừa Sáp Cầu Kè Size Vừa – Lớn</strong> khi nạo ra dầm sữa đá hoặc xay sinh tố cốt dừa bơ sáp cho ra từ <strong>5 – 6 ly thành phẩm</strong>. Với giá bán lẻ mỗi ly dừa sáp dầm tại các thành phố từ 35.000đ – 55.000đ/ly, biên lợi nhuận của quán đạt trên 50% mà khách ăn một lần là quay lại thường xuyên.</p>"
+            ),
+            (
+                "2. Quyền Lợi Khi Nhập Sỉ Trực Tiếp Từ Vựa Dừa Sáp Cầu Kè (Zalo 086 678 6076)",
+                "<ul>"
+                "<li><strong>Phân loại chuẩn xác theo cân nặng:</strong> Đủ các size Nhỏ (800g-1kg), Vừa (1kg-1.3kg), Lớn VIP (1.3kg-1.5kg) đồng đều.</li>"
+                "<li><strong>Đóng bao dứa / gửi chành xe tốc hành:</strong> Hỗ trợ gửi chành xe miền Tây – TP.HCM nhận ngay trong ngày hoặc bưu cục nhanh đi Hà Nội, Đà Nẵng, các tỉnh.</li>"
+                "<li><strong>Bảo hành sáp 100%:</strong> Không lo hao hụt vốn nguyên liệu.</li>"
+                "</ul>"
+            )
+        ]
+    },
+    {
+        "slug": "cach-lam-kem-dua-sap-che-dua-sap-tai-nha",
+        "label": "🍨 Cách Làm Kem Dừa Sáp & Chè Dừa Sáp",
+        "title": "Cách Làm Kem Dừa Sáp & Chè Dừa Sáp Trân Châu Cốt Dừa Mát Lạnh Không Bị Dăm Đá",
+        "meta_desc": "Công thức làm kem dừa sáp dẻo mịn không cần máy làm kem và món chè dừa sáp trân châu cốt dừa béo ngậy giải nhiệt mùa hè cho cả gia đình.",
+        "keywords": "cách làm kem dừa sáp, chè dừa sáp, kem dừa sáp trà vinh, món ngon từ dừa sáp, dừa sáp trân châu cốt dừa",
+        "h1": "Bí Quyết Làm Kem Dừa Sáp Mịn Mượt Không Dăm Đá & Chè Dừa Sáp Trân Châu Tại Nhà",
+        "hero_img": "images/gao_dua_trai_cay.jpg",
+        "faq_q1": "Làm kem dừa sáp tại nhà không có máy làm kem có bị cứng đá không?",
+        "faq_a1": "Không hề bị dăm đá! Do bản thân cơm dừa sáp Cầu Kè chứa hàm lượng tinh dầu béo tự nhiên rất cao, khi xay nhuyễn cùng whipping cream (hoặc sữa đặc + cốt dừa) rồi cấp đông vẫn giữ được độ dẻo xốp mịn màng.",
+        "faq_q2": "Nên chọn dừa sáp size nào để làm kem và nấu chè kinh tế nhất?",
+        "faq_a2": "Gia đình 4 - 6 người nên chọn cặp 2 trái Size Vừa (1.0kg - 1.3kg, giá 278.000đ Freeship) sẽ thu được lượng cơm sáp dày dặn nhất.",
+        "sections": [
+            (
+                "1. Công Thức Kem Dừa Sáp Đựng Trong Gáo Dừa Mịn Như Ngoài Tiệm",
+                "<p>Chỉ với 1 trái <strong>Dừa Sáp Cầu Kè Loại 1</strong>, 150ml kem tươi (whipping cream) và 60g sữa đặc, bạn xay mịn hỗn hợp cơm dừa sáp rồi trộn nhẹ (fold) với kem tươi đánh bông, cho ngược vào hai nửa gáo dừa sạch rồi để ngăn đá 5 tiếng. Khi ăn rắc thêm dừa khô và đậu phộng rang giòn rụm.</p>"
+            ),
+            (
+                "2. Chè Dừa Sáp Sương Sáo Hạt Đác Ngọt Thanh Giải Nhiệt",
+                "<p>Thái sợi hoặc xắn miếng vuông cơm dừa sáp, kết hợp cùng hạt đác rim dứa, thạch sương sáo đen và nước dừa kẹo pha sữa tươi mát lạnh — món tráng miệng thanh nhiệt tuyệt vời cho cả ông bà và các bé nhỏ.</p>"
+            )
+        ]
+    },
+    {
+        "slug": "dua-sap-bi-chua-hay-hu-cach-nhan-biet",
+        "label": "🔍 Nhận Biết Dừa Sáp Ngon vs Dừa Hư Chua",
+        "title": "Dừa Sáp Có Vị Hơi Chua Hay Bị Hư? Cách Nhận Biết Dừa Sáp Tươi Ngon Chuẩn Loại 1",
+        "meta_desc": "Phân biệt mùi thơm lên men nhẹ tự nhiên hay dấu hiệu dừa sáp bị hư chua, gắt dầu do nứt gáo, cùng chính sách bảo hành 1 đổi 1 trong 15 phút tại Vựa Cầu Kè.",
+        "keywords": "dừa sáp bị chua, cách nhận biết dừa sáp bị hư, mùi vị dừa sáp chuẩn, dừa sáp để lâu bị gắt dầu, bảo hành dừa sáp",
+        "h1": "Cách Nhận Biết Dừa Sáp Tươi Ngon Chuẩn Vị Và Dấu Hiệu Dừa Sáp Bị Hư Do Nứt Gáo",
+        "hero_img": "images/dac_ruot.jpg",
+        "faq_q1": "Mùi vị chuẩn của trái dừa sáp Cầu Kè tươi ngon là như thế nào?",
+        "faq_a1": "Trái dừa sáp chuẩn khi mới bổ ra có màu trắng phau như bông gòn, mùi thơm dịu đặc trưng của cùi dừa già quyện sữa, nước dừa sệt trong hơi đục nhẹ và có vị ngọt thanh bùi béo (hoàn toàn không chua gắt hay hắc mùi dầu).",
+        "faq_q2": "Nếu bổ ra thấy nước dừa có mùi chua hoặc ngả màu vàng thì xử lý sao?",
+        "faq_a2": "Quý khách tuyệt đối không sử dụng mà hãy chụp ngay 1 tấm hình bên trong gáo dừa gửi qua Zalo 086 678 6076. Vựa Dừa Sáp Cầu Kè sẽ gửi bù ngay 1 trái mới hoàn toàn miễn phí hoặc hoàn tiền 100% trong 15 phút!",
+        "sections": [
+            (
+                "1. 3 Dấu Hiệu Của Trái Dừa Sáp Tươi Ngon Đạt Đỉnh Độ Sáp",
+                "<ul>"
+                "<li><strong>Màu sắc:</strong> Cơm dừa trắng tinh khôi, bề mặt bông xốp mềm mịn như kem tuyết.</li>"
+                "<li><strong>Hương thơm:</strong> Thơm thoang thoảng mùi dừa non pha cốt dừa béo dịu ngay khi vừa tách gáo.</li>"
+                "<li><strong>Vị giác:</strong> Nhai thử miếng cơm sáp nguyên chất thấy dẻo sần sật bên ngoài, tan mềm bên trong, hậu vị ngọt thanh tự nhiên.</li>"
+                "</ul>"
+            ),
+            (
+                "2. Nguyên Nhân Khiến Dừa Bị Chua & Cam Kết Bảo Hành Vàng 1 Đổi 1",
+                "<p>Trong hàng trăm trái dừa tự nhiên, đôi khi có 1 – 2% trái bị rạn mắt mầm li ti bên dưới lớp xơ làm không khí lọt vào gây chua nước. Hiểu rõ điều đó, <strong>Vựa Dừa Sáp Cầu Kè</strong> luôn đứng ra chịu trách nhiệm 100%: <strong>bổ ra lỗi trái nào, nhà vườn đền bù ngay trái mới trái đó tận nhà</strong>, không bao giờ để khách hàng chịu thiệt!</p>"
+            )
+        ]
+    },
+    {
+        "slug": "mua-dua-sap-da-nang-mien-trung-giao-tan-noi",
+        "label": "🌊 Ship Dừa Sáp đi Đà Nẵng & Miền Trung",
+        "title": "Đặt Mua Dừa Sáp Trà Vinh Gửi Đi Đà Nẵng, Huế, Nha Trang & Miền Trung Mất Bao Lâu?",
+        "meta_desc": "Dịch vụ gửi Dừa Sáp Cầu Kè Trà Vinh Loại 1 đi Đà Nẵng, Hội An, Huế, Quy Nhơn, Nha Trang chỉ 2 ngày nhận hàng. Mua 2 trái Freeship tận nơi, bao sáp đặc từng trái.",
+        "keywords": "mua dừa sáp ở đà nẵng, dừa sáp trà vinh tại nha trang, gửi dừa sáp đi miền trung, mua dừa sáp huế, dừa sáp freeship toàn quốc",
+        "h1": "Mua Dừa Sáp Cầu Kè Trà Vinh Tại Đà Nẵng, Nha Trang & Miền Trung: Giao Tận Nhà 2 Ngày",
+        "hero_img": "images/boc_luoi.jpg",
+        "faq_q1": "Khách ở Đà Nẵng và Nha Trang đặt 2 trái dừa sáp có được miễn phí ship không?",
+        "faq_a1": "Dạ được Miễn Phí Ship 100%! Chỉ cần đặt từ 2 trái bất kỳ (Size Nhỏ, Vừa hoặc Lớn VIP), nhà vườn bao trọn phí vận chuyển giao tận nhà tại Đà Nẵng, Huế, Quảng Nam, Quy Nhơn, Nha Trang.",
+        "faq_q2": "Trời nắng miền Trung gửi dừa sáp đi 2 - 3 ngày có cần bỏ thùng đá không?",
+        "faq_a2": "Không cần thùng đá (vì hơi nước đá làm ẩm mốc mắt dừa). Giữ nguyên lớp vỏ xơ dày tự nhiên bên ngoài và bọc túi lưới thoáng khí chính là cách bảo quản truyền thống tốt nhất giúp dừa tươi nguyên suốt 2 tuần.",
+        "sections": [
+            (
+                "1. Thưởng Thức Đặc Sản Trà Vinh Chính Gốc Ngay Tại Miền Trung",
+                "<p>Không cần phải đi du lịch miền Tây xa xôi, giờ đây anh chị tại <strong>Đà Nẵng, Huế, Quảng Nam, Quảng Ngãi, Bình Định, Phú Yên, Khánh Hòa (Nha Trang)</strong> chỉ cần đặt hàng trực tuyến tại website nhà vườn, thợ vườn Hòa Tân sẽ lắc tuyển những trái dừa già đanh cắt mới trong sáng và gửi thẳng tận cửa chỉ sau <strong>2 – 3 ngày</strong>.</p>"
+            ),
+            (
+                "2. Combo Gia Đình Được Khách Đà Nẵng & Nha Trang Ưa Chuộng Nhất",
+                "<ul>"
+                "<li><strong>Combo Ăn Thử Gia Đình (278.000đ):</strong> 2 trái Size Vừa (1.0kg – 1.3kg/trái) + <strong>Miễn Phí Ship</strong> — làm được 8 đến 10 ly dừa sáp dầm sữa đá mát lạnh.</li>"
+                "<li><strong>Combo Quà Tặng Đủ Đầy (338.000đ):</strong> 2 trái Size Lớn VIP (1.3kg – 1.5kg/trái) + <strong>Miễn Phí Ship</strong> + <strong>Tặng Bộ Sữa Đặc & Đậu Phộng Rang</strong>.</li>"
+                "</ul>"
+            )
+        ]
     }
 ]
 
 
+def generate_ai_seo_topic_gemini(existing_slugs: set) -> dict:
+    """Khi hàng đợi tĩnh đã xuất bản hết, tự động gọi Gemini 3.8 Flash / 3.6 Flash sinh chủ đề Long-Tail mới."""
+    if not GEMINI_API_KEY:
+        return None
+    prompt = (
+        "Bạn là chuyên gia SEO Thương mại điện tử cho thương hiệu 'Vựa Dừa Sáp Cầu Kè Trà Vinh' "
+        "(xã Hòa Tân, huyện Cầu Kè, tỉnh Trà Vinh; bảng giá: Size Nhỏ 800g-1kg 99.000đ, Size Vừa 1-1.3kg 139.000đ, "
+        "Size Lớn VIP 1.3-1.5kg 169.000đ; mua từ 2 trái Freeship toàn quốc; đơn từ 300k tặng Sữa đặc + Đậu phộng; "
+        "bao sáp 1 đổi 1 qua Zalo 086 678 6076).\n"
+        f"Các slug đã viết (TUYỆT ĐỐI KHÔNG TRÙNG): {sorted(list(existing_slugs))}\n"
+        "Hãy tạo 1 bài viết Long-Tail SEO mới tinh có ý định mua hàng cao (ví dụ: trẻ em ăn dừa sáp, người già tiểu đường ăn dừa sáp, "
+        "dừa sáp làm bánh/rau câu, mua dừa sáp Hải Phòng/Cần Thơ/Bình Dương, tại sao dừa sáp hiếm...).\n"
+        "Trả về DUY NHẤT 1 JSON hợp lệ (không markdown fence) theo cấu trúc:\n"
+        '{"slug":"slug-khong-dau","label":"🥥 Tiêu đề ngắn 5 từ","title":"Tiêu đề chuẩn SEO 55-65 ký tự",'
+        '"meta_desc":"Mô tả 140-155 ký tự","keywords":"từ khóa 1, từ khóa 2","h1":"Tiêu đề H1 hấp dẫn",'
+        '"hero_img":"images/doi_dua.jpg","faq_q1":"Câu hỏi 1?","faq_a1":"Trả lời 1","faq_q2":"Câu hỏi 2?","faq_a2":"Trả lời 2",'
+        '"sections":[["1. Tiêu đề H2 mục 1","<p>Nội dung HTML chi tiết...</p>"],["2. Tiêu đề H2 mục 2","<p>Nội dung HTML chi tiết...</p>"]]}'
+    )
+    for model in ["gemini-3.8-flash", "gemini-3.6-flash"]:
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}"
+            r = requests.post(
+                url,
+                json={
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {"temperature": 0.6, "maxOutputTokens": 1800, "responseMimeType": "application/json", "thinkingConfig": {"thinkingBudget": 0}}
+                },
+                timeout=25
+            )
+            if r.status_code == 200:
+                txt = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                txt = re.sub(r"^```(?:json)?|```$", "", txt, flags=re.MULTILINE).strip()
+                data = json.loads(txt)
+                slug = re.sub(r"[^a-z0-9\-]", "", data.get("slug", "").lower())
+                if slug and slug not in existing_slugs and data.get("sections"):
+                    data["slug"] = slug
+                    if data.get("hero_img") not in ("images/doi_dua.jpg", "images/keo_soi.jpg", "images/ly_dam_sua.jpg", "images/dua_sap_size_lon_vip.jpg"):
+                        data["hero_img"] = "images/doi_dua.jpg"
+                    return data
+        except Exception as e:
+            print(f"⚠️ Gemini SEO topic gen ({model}) warning: {e}")
+    return None
+
+
 def render_article_html(topic: dict, today_iso: str) -> str:
-    """Sinh trang HTML chuẩn SEO 100% (1 H1, Schema Article + BreadcrumbList + FAQPage, Internal Links, CTA)."""
+    """Sinh trang HTML chuẩn SEO & CRO 100% (Schema @graph, Quick Size Picker Deep-Links, Related Cluster, Sticky Mobile Bar)."""
     sections_html = ""
     for h2_title, body_html in topic["sections"]:
         sections_html += f"""
@@ -195,6 +459,12 @@ def render_article_html(topic: dict, today_iso: str) -> str:
 
     canonical_url = f"{SITE_URL}/{topic['slug']}.html"
     hero_img_url = f"{SITE_URL}/{topic['hero_img']}"
+
+    related_items = [t for t in SEO_TOPICS_QUEUE if t["slug"] != topic["slug"]][:4]
+    related_links_html = "".join([
+        f'<li><a href="/{r["slug"]}.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">{r["title"]}</a></li>'
+        for r in related_items
+    ])
 
     schema_graph = {
         "@context": "https://schema.org",
@@ -259,27 +529,34 @@ def render_article_html(topic: dict, today_iso: str) -> str:
   <style>
     :root {{ --leaf-900: #1b3b24; --leaf-800: #234d2e; --leaf-700: #2d663c; --leaf-100: #e6f4ea; --leaf-50: #f3faf5; --coco-brown: #4a3525; --coco-muted: #6e5a4b; --earth-gold: #c87d20; --cream-bg: #fbf8f3; --border-soft: #e6dec8; }}
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{ font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.7; }}
+    body {{ font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.7; padding-bottom: 68px; }}
     h1, h2, h3 {{ font-family: 'Lora', Georgia, serif; color: var(--leaf-900); line-height: 1.3; }}
     .container {{ max-width: 840px; margin: 0 auto; padding: 0 18px; }}
-    header {{ background: var(--leaf-900); color: #fff; padding: 14px 0; }}
-    header .nav {{ display: flex; justify-content: space-between; align-items: center; max-width: 840px; margin: 0 auto; padding: 0 18px; }}
+    header {{ background: var(--leaf-900); color: #fff; padding: 14px 0; position: sticky; top: 0; z-index: 100; }}
+    header .nav {{ display: flex; justify-content: space-between; align-items: center; max-width: 840px; margin: 0 auto; padding: 0 18px; gap: 10px; }}
     header a {{ color: #fff; text-decoration: none; font-weight: 700; }}
     .breadcrumb {{ font-size: 0.85rem; color: var(--coco-muted); margin: 18px 0; }}
     .breadcrumb a {{ color: var(--leaf-700); text-decoration: underline; }}
     article {{ background: #fff; border: 1px solid var(--border-soft); border-radius: 20px; padding: 32px 26px; margin-bottom: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }}
     ul {{ padding-left: 20px; margin-top: 8px; }}
     li {{ margin-bottom: 8px; }}
-    .cta-box {{ background: var(--leaf-50); border: 2px solid var(--leaf-700); border-radius: 18px; padding: 24px; text-align: center; margin-top: 28px; }}
-    .btn-cta {{ display: inline-block; background: var(--earth-gold); color: #fff; padding: 13px 26px; border-radius: 99px; font-weight: 700; text-decoration: none; margin-top: 12px; }}
+    .quick-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 16px; text-align: left; }}
+    .q-card {{ background: #fff; border: 1.5px solid var(--border-soft); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }}
+    .q-card.featured {{ border: 2px solid var(--leaf-700); background: #fffdf9; }}
+    .q-btn {{ display: block; text-align: center; background: var(--leaf-800); color: #fff; padding: 10px 12px; border-radius: 99px; font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: 10px; }}
+    .q-card.featured .q-btn {{ background: var(--earth-gold); }}
+    .cta-box {{ background: var(--leaf-50); border: 2px solid var(--leaf-700); border-radius: 18px; padding: 24px 20px; text-align: center; margin-top: 28px; }}
+    .sticky-bar {{ position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); border-top: 1px solid var(--border-soft); padding: 8px 12px; display: flex; gap: 8px; justify-content: center; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); }}
+    .s-btn {{ flex: 1; max-width: 220px; padding: 11px 8px; border-radius: 99px; font-weight: 700; font-size: 0.82rem; text-align: center; text-decoration: none; white-space: nowrap; }}
     footer {{ background: var(--leaf-900); color: #e6dec8; text-align: center; padding: 32px 18px; font-size: 0.86rem; }}
+    @media (max-width: 600px) {{ article {{ padding: 22px 16px; }} h1 {{ font-size: 1.55rem !important; }} }}
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <a href="/">🥥 Vựa Dừa Sáp Cầu Kè Trà Vinh</a>
-      <a href="/#dat-hang" style="background: var(--earth-gold); padding: 7px 16px; border-radius: 99px; font-size: 0.85rem;">🛒 Đặt Dừa Ngay</a>
+      <a href="/">🥥 Vựa Dừa Sáp Cầu Kè</a>
+      <a href="/?size=size_vua&qty=2#dat-hang" style="background: var(--earth-gold); padding: 7px 16px; border-radius: 99px; font-size: 0.85rem;">🛒 Đặt 2 Trái Freeship</a>
     </div>
   </header>
 
@@ -313,15 +590,57 @@ def render_article_html(topic: dict, today_iso: str) -> str:
       </section>
 
       <div class="cta-box">
-        <h2 style="font-size: 1.35rem; margin-bottom: 6px;">Đặt Dừa Sáp Cầu Kè Loại 1 Hái Mới Tại Vườn</h2>
-        <p style="font-size: 0.92rem; color: var(--coco-muted);">
-          Size Nhỏ: <strong>99.000đ</strong> • Size Vừa: <strong>139.000đ</strong> • Size Lớn VIP: <strong>169.000đ</strong><br>
-          Mua từ 2 trái <strong>Freeship Toàn Quốc</strong> • Đơn từ 300k tặng <strong>Sữa đặc & Đậu phộng rang</strong> • Bao sáp 1 đổi 1!
+        <h2 style="font-size: 1.35rem; margin-bottom: 6px;">Chọn Size Dừa Sáp Cầu Kè Loại 1 (Hái Mới Sáng Nay)</h2>
+        <p style="font-size: 0.9rem; color: var(--coco-muted);">
+          Mua từ 2 trái <strong>Freeship Toàn Quốc</strong> • Đơn từ 300k tặng <strong>Sữa đặc & Đậu phộng rang</strong> • Bao sáp 1 đổi 1 tận nhà!
         </p>
-        <a href="/#dat-hang" class="btn-cta">👉 CHỌN SIZE & ĐẶT DỪA NGAY</a>
+
+        <div class="quick-grid">
+          <div class="q-card">
+            <div>
+              <div style="font-size: 0.78rem; color: var(--coco-muted);">800g - 1.0kg (Ăn thử)</div>
+              <strong style="font-size: 1.05rem; color: var(--leaf-900);">Size Nhỏ • 99.000đ</strong>
+              <div style="font-size: 0.8rem; margin-top: 4px;">Cặp 2 trái: <strong>198.000đ</strong> (Freeship)</div>
+            </div>
+            <a href="/?size=size_nho&qty=2#dat-hang" class="q-btn">Chọn 2 Trái Nhỏ</a>
+          </div>
+
+          <div class="q-card featured">
+            <div>
+              <div style="font-size: 0.76rem; color: var(--earth-gold); font-weight: 700;">🔥 BÁN CHẠY NHẤT</div>
+              <strong style="font-size: 1.05rem; color: var(--leaf-900);">Size Vừa • 139.000đ</strong>
+              <div style="font-size: 0.8rem; margin-top: 4px;">Cặp 2 trái: <strong>278.000đ</strong> (Freeship)</div>
+            </div>
+            <a href="/?size=size_vua&qty=2#dat-hang" class="q-btn">👉 Đặt 2 Trái Vừa Ngay</a>
+          </div>
+
+          <div class="q-card">
+            <div>
+              <div style="font-size: 0.78rem; color: var(--leaf-700);">1.3kg - 1.5kg (Biếu VIP)</div>
+              <strong style="font-size: 1.05rem; color: var(--leaf-900);">Size Lớn • 169.000đ</strong>
+              <div style="font-size: 0.8rem; margin-top: 4px;">Cặp 2 trái: <strong>338k</strong> (Freeship + Quà)</div>
+            </div>
+            <a href="/?size=size_lon&qty=2#dat-hang" class="q-btn">Chọn 2 Trái VIP + Quà</a>
+          </div>
+        </div>
       </div>
+
+      <section style="margin-top: 26px; padding-top: 18px; border-top: 1px dashed var(--border-soft);">
+        <h3 style="font-size: 1.08rem; margin-bottom: 8px;">📖 Cẩm Nang Dừa Sáp Cầu Kè Liên Quan:</h3>
+        <ul style="font-size: 0.9rem;">
+          {related_links_html}
+          <li><a href="/cach-phan-biet-dua-sap-that-gia.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">4 Tuyệt kỹ lắc & phân biệt Dừa Sáp thật giả chuẩn nhà vườn</a></li>
+          <li><a href="/gia-dua-sap-tra-vinh.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Bảng giá Dừa Sáp Trà Vinh Loại 1 cập nhật mới nhất</a></li>
+        </ul>
+      </section>
     </article>
   </main>
+
+  <div class="sticky-bar">
+    <a href="https://zalo.me/0866786076" target="_blank" rel="noopener" class="s-btn" style="background: #eff6ff; color: #0068ff; border: 1px solid #bfdbfe;">💬 Chat Zalo</a>
+    <a href="tel:0866786076" class="s-btn" style="background: var(--leaf-100); color: var(--leaf-900);">📞 086.678.6076</a>
+    <a href="/?size=size_vua&qty=2#dat-hang" class="s-btn" style="background: var(--earth-gold); color: #fff;">🛒 Đặt 2 Trái Freeship</a>
+  </div>
 
   <footer>
     <p><strong>Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</strong></p>
@@ -413,10 +732,16 @@ def rebuild_sitemap(today_iso: str) -> list:
       <image:title>Dừa Sáp Kẹo Sợi Trà Vinh</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>{SITE_URL}/images/step2_nut_doi.jpg</video:thumbnail_loc>
-      <video:title>Cận Cảnh Bổ Dừa Sáp Cầu Kè Trà Vinh Loại 1 Kéo Sợi Đặc Ruột</video:title>
-      <video:description>Video thực tế gõ nhẹ sống dao tách đôi gáo dừa sáp loại 1 tại vườn Cầu Kè Trà Vinh lộ lớp cơm dày trắng ngần và nước sệt kẹo.</video:description>
-      <video:content_loc>{SITE_URL}/images/video_dua_sap_moi.mp4</video:content_loc>
+      <video:thumbnail_loc>{SITE_URL}/images/doi_dua.jpg</video:thumbnail_loc>
+      <video:title>ASMR Bổ Dừa Sáp Cầu Kè Trà Vinh Loại 1 Kéo Sợi Đặc Ruột</video:title>
+      <video:description>Cận cảnh tách đôi gáo dừa sáp Cầu Kè Trà Vinh trắng muốt, múc muỗng cơm sáp dẻo quánh kéo sợi óng ánh.</video:description>
+      <video:content_loc>{SITE_URL}/images/asmr_bo_dua_keo_soi.mp4</video:content_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>{SITE_URL}/images/ly_dam_sua.jpg</video:thumbnail_loc>
+      <video:title>Cách Làm Ly Dừa Sáp Dầm Sữa Đá Đậu Phộng Rang Chuẩn Vị Trà Vinh</video:title>
+      <video:description>Cơm dừa sáp dẻo quánh dầm sữa đặc đá bào và đậu phộng rang giòn rụm mát lạnh.</video:description>
+      <video:content_loc>{SITE_URL}/images/asmr_dam_sua_dau_phong.mp4</video:content_loc>
     </video:video>
   </url>
 {chr(10).join(sub_entries)}
@@ -472,11 +797,24 @@ def main():
     now_vn = datetime.datetime.now(VN_TZ)
     today_iso = now_vn.strftime("%Y-%m-%d")
     today_vn_str = now_vn.strftime("%d/%m/%Y")
+    upgrade_existing = ("--upgrade-existing" in sys.argv)
 
-    print(f"🚀 [AUTO-SEO ENGINE V3.0] Khởi chạy ngày {today_vn_str} ({today_iso})")
+    print(f"🚀 [AUTO-SEO ENGINE V4.0] Khởi chạy ngày {today_vn_str} ({today_iso})")
+
+    if upgrade_existing:
+        for t in SEO_TOPICS_QUEUE:
+            fp = os.path.join(BASE_DIR, f"{t['slug']}.html")
+            if os.path.exists(fp):
+                with open(fp, "w", encoding="utf-8") as f:
+                    f.write(render_article_html(t, today_iso))
+                print(f"♻️ Đã nâng cấp giao diện CRO cho bài cũ: {t['slug']}.html")
 
     # 1. Tìm bài viết tiếp theo trong hàng đợi chưa được xuất bản
     created_article = None
+    existing_slugs = {
+        f[:-5] for f in os.listdir(BASE_DIR) if f.endswith(".html")
+    }
+
     for topic in SEO_TOPICS_QUEUE:
         file_path = os.path.join(BASE_DIR, f"{topic['slug']}.html")
         if not os.path.exists(file_path):
@@ -484,13 +822,24 @@ def main():
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(html_content)
             created_article = topic
-            print(f"✅ Đã sinh bài viết SEO mới: {topic['slug']}.html")
+            print(f"✅ Đã sinh bài viết SEO mới từ Queue: {topic['slug']}.html")
             break
+
+    # 1b. Nếu hàng đợi tĩnh đã xuất bản hết -> dùng Gemini sinh bài mới tự động
+    if not created_article:
+        ai_topic = generate_ai_seo_topic_gemini(existing_slugs)
+        if ai_topic:
+            file_path = os.path.join(BASE_DIR, f"{ai_topic['slug']}.html")
+            html_content = render_article_html(ai_topic, today_iso)
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(html_content)
+            created_article = ai_topic
+            print(f"🤖 Đã sinh bài viết SEO mới bằng Gemini AI: {ai_topic['slug']}.html")
 
     # 2. Cập nhật độ tươi mới trên trang chủ index.html & gắn link nội bộ
     update_index_freshness_and_links(today_vn_str, created_article)
 
-    # 3. Nếu tất cả các bài trong queue đều đã tạo, cập nhật thêm vào llms.txt
+    # 3. Đồng bộ bài viết mới vào llms.txt cho AI Search (ChatGPT, Perplexity, Google AI Overviews)
     if created_article:
         llms_path = os.path.join(BASE_DIR, "llms.txt")
         if os.path.exists(llms_path):
@@ -509,14 +858,14 @@ def main():
     # 5. Ping IndexNow
     ping_status = ping_indexnow(all_urls)
 
-    # 6. Gửi báo cáo về Telegram
+    # 6. Gửi báo cáo về Telegram (khi chạy trên GitHub Actions có secret)
     if created_article:
         article_line = f"📝 <b>Bài SEO mới xuất bản:</b>\n<a href='{SITE_URL}/{created_article['slug']}.html'>{created_article['title']}</a>\n"
     else:
         article_line = "🔄 <b>Cập nhật độ tươi mới (Freshness):</b> Đã làm mới dấu thời gian mẻ dừa hôm nay & toàn bộ Sitemap.\n"
 
     report = (
-        f"📈 <b>[AUTO-SEO HÀNG NGÀY - {today_vn_str}]</b>\n"
+        f"📈 <b>[AUTO-SEO HÀNG NGÀY V4.0 - {today_vn_str}]</b>\n"
         f"━━━━━━━━━━━━━━━━━━━━━━\n"
         f"{article_line}"
         f"🗺️ <b>Sitemap.xml:</b> Đã đồng bộ <b>{len(all_urls)} trang</b> (<code>lastmod: {today_iso}</code>)\n"
@@ -524,7 +873,7 @@ def main():
         f"🌐 <b>Website:</b> <a href='{SITE_URL}'>duasaptravinh.netlify.app</a>"
     )
     send_telegram_report(report)
-    print("🎉 Hoàn tất chu trình Auto-SEO Hàng Ngày!")
+    print("🎉 Hoàn tất chu trình Auto-SEO Hàng Ngày V4.0!")
 
 
 if __name__ == "__main__":

@@ -84,27 +84,34 @@
   <style>
     :root { --leaf-900: #1b3b24; --leaf-800: #234d2e; --leaf-700: #2d663c; --leaf-100: #e6f4ea; --leaf-50: #f3faf5; --coco-brown: #4a3525; --coco-muted: #6e5a4b; --earth-gold: #c87d20; --cream-bg: #fbf8f3; --border-soft: #e6dec8; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.7; }
+    body { font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.7; padding-bottom: 68px; }
     h1, h2, h3 { font-family: 'Lora', Georgia, serif; color: var(--leaf-900); line-height: 1.3; }
     .container { max-width: 840px; margin: 0 auto; padding: 0 18px; }
-    header { background: var(--leaf-900); color: #fff; padding: 14px 0; }
-    header .nav { display: flex; justify-content: space-between; align-items: center; max-width: 840px; margin: 0 auto; padding: 0 18px; }
+    header { background: var(--leaf-900); color: #fff; padding: 14px 0; position: sticky; top: 0; z-index: 100; }
+    header .nav { display: flex; justify-content: space-between; align-items: center; max-width: 840px; margin: 0 auto; padding: 0 18px; gap: 10px; }
     header a { color: #fff; text-decoration: none; font-weight: 700; }
     .breadcrumb { font-size: 0.85rem; color: var(--coco-muted); margin: 18px 0; }
     .breadcrumb a { color: var(--leaf-700); text-decoration: underline; }
     article { background: #fff; border: 1px solid var(--border-soft); border-radius: 20px; padding: 32px 26px; margin-bottom: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
     ul { padding-left: 20px; margin-top: 8px; }
     li { margin-bottom: 8px; }
-    .cta-box { background: var(--leaf-50); border: 2px solid var(--leaf-700); border-radius: 18px; padding: 24px; text-align: center; margin-top: 28px; }
-    .btn-cta { display: inline-block; background: var(--earth-gold); color: #fff; padding: 13px 26px; border-radius: 99px; font-weight: 700; text-decoration: none; margin-top: 12px; }
+    .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 16px; text-align: left; }
+    .q-card { background: #fff; border: 1.5px solid var(--border-soft); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
+    .q-card.featured { border: 2px solid var(--leaf-700); background: #fffdf9; }
+    .q-btn { display: block; text-align: center; background: var(--leaf-800); color: #fff; padding: 10px 12px; border-radius: 99px; font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: 10px; }
+    .q-card.featured .q-btn { background: var(--earth-gold); }
+    .cta-box { background: var(--leaf-50); border: 2px solid var(--leaf-700); border-radius: 18px; padding: 24px 20px; text-align: center; margin-top: 28px; }
+    .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); border-top: 1px solid var(--border-soft); padding: 8px 12px; display: flex; gap: 8px; justify-content: center; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); }
+    .s-btn { flex: 1; max-width: 220px; padding: 11px 8px; border-radius: 99px; font-weight: 700; font-size: 0.82rem; text-align: center; text-decoration: none; white-space: nowrap; }
     footer { background: var(--leaf-900); color: #e6dec8; text-align: center; padding: 32px 18px; font-size: 0.86rem; }
+    @media (max-width: 600px) { article { padding: 22px 16px; } h1 { font-size: 1.55rem !important; } }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <a href="/">🥥 Vựa Dừa Sáp Cầu Kè Trà Vinh</a>
-      <a href="/#dat-hang" style="background: var(--earth-gold); padding: 7px 16px; border-radius: 99px; font-size: 0.85rem;">🛒 Đặt Dừa Ngay</a>
+      <a href="/">🥥 Vựa Dừa Sáp Cầu Kè</a>
+      <a href="/?size=size_vua&qty=2#dat-hang" style="background: var(--earth-gold); padding: 7px 16px; border-radius: 99px; font-size: 0.85rem;">🛒 Đặt 2 Trái Freeship</a>
     </div>
   </header>
 
@@ -150,15 +157,57 @@
       </section>
 
       <div class="cta-box">
-        <h2 style="font-size: 1.35rem; margin-bottom: 6px;">Đặt Dừa Sáp Cầu Kè Loại 1 Hái Mới Tại Vườn</h2>
-        <p style="font-size: 0.92rem; color: var(--coco-muted);">
-          Size Nhỏ: <strong>99.000đ</strong> • Size Vừa: <strong>139.000đ</strong> • Size Lớn VIP: <strong>169.000đ</strong><br>
-          Mua từ 2 trái <strong>Freeship Toàn Quốc</strong> • Đơn từ 300k tặng <strong>Sữa đặc & Đậu phộng rang</strong> • Bao sáp 1 đổi 1!
+        <h2 style="font-size: 1.35rem; margin-bottom: 6px;">Chọn Size Dừa Sáp Cầu Kè Loại 1 (Hái Mới Sáng Nay)</h2>
+        <p style="font-size: 0.9rem; color: var(--coco-muted);">
+          Mua từ 2 trái <strong>Freeship Toàn Quốc</strong> • Đơn từ 300k tặng <strong>Sữa đặc & Đậu phộng rang</strong> • Bao sáp 1 đổi 1 tận nhà!
         </p>
-        <a href="/#dat-hang" class="btn-cta">👉 CHỌN SIZE & ĐẶT DỪA NGAY</a>
+
+        <div class="quick-grid">
+          <div class="q-card">
+            <div>
+              <div style="font-size: 0.78rem; color: var(--coco-muted);">800g - 1.0kg (Ăn thử)</div>
+              <strong style="font-size: 1.05rem; color: var(--leaf-900);">Size Nhỏ • 99.000đ</strong>
+              <div style="font-size: 0.8rem; margin-top: 4px;">Cặp 2 trái: <strong>198.000đ</strong> (Freeship)</div>
+            </div>
+            <a href="/?size=size_nho&qty=2#dat-hang" class="q-btn">Chọn 2 Trái Nhỏ</a>
+          </div>
+
+          <div class="q-card featured">
+            <div>
+              <div style="font-size: 0.76rem; color: var(--earth-gold); font-weight: 700;">🔥 BÁN CHẠY NHẤT</div>
+              <strong style="font-size: 1.05rem; color: var(--leaf-900);">Size Vừa • 139.000đ</strong>
+              <div style="font-size: 0.8rem; margin-top: 4px;">Cặp 2 trái: <strong>278.000đ</strong> (Freeship)</div>
+            </div>
+            <a href="/?size=size_vua&qty=2#dat-hang" class="q-btn">👉 Đặt 2 Trái Vừa Ngay</a>
+          </div>
+
+          <div class="q-card">
+            <div>
+              <div style="font-size: 0.78rem; color: var(--leaf-700);">1.3kg - 1.5kg (Biếu VIP)</div>
+              <strong style="font-size: 1.05rem; color: var(--leaf-900);">Size Lớn • 169.000đ</strong>
+              <div style="font-size: 0.8rem; margin-top: 4px;">Cặp 2 trái: <strong>338k</strong> (Freeship + Quà)</div>
+            </div>
+            <a href="/?size=size_lon&qty=2#dat-hang" class="q-btn">Chọn 2 Trái VIP + Quà</a>
+          </div>
+        </div>
       </div>
+
+      <section style="margin-top: 26px; padding-top: 18px; border-top: 1px dashed var(--border-soft);">
+        <h3 style="font-size: 1.08rem; margin-bottom: 8px;">📖 Cẩm Nang Dừa Sáp Cầu Kè Liên Quan:</h3>
+        <ul style="font-size: 0.9rem;">
+          <li><a href="/dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Dừa Sáp Trà Vinh Gửi Đi Hà Nội & Miền Bắc Mất Mấy Ngày? Có Bị Hư Không?</a></li><li><a href="/ba-bau-an-dua-sap-co-tot-khong.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Bà Bầu Ăn Dừa Sáp Có Tốt Không? Giá Trị Dinh Dưỡng & Lưu Ý Quan Trọng</a></li><li><a href="/cach-lam-sinh-to-dua-sap-dam-sua-ngon.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">5 Cách Làm Dừa Sáp Dầm Sữa Đá, Dầm Bơ & Sinh Tố Dừa Sáp Béo Ngậy Tại Nhà</a></li><li><a href="/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Mua Dừa Sáp Trà Vinh Ở TP.HCM Ở Đâu Uy Tín? Giá Gốc Tại Vườn Giao Nhanh 1 Ngày</a></li>
+          <li><a href="/cach-phan-biet-dua-sap-that-gia.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">4 Tuyệt kỹ lắc & phân biệt Dừa Sáp thật giả chuẩn nhà vườn</a></li>
+          <li><a href="/gia-dua-sap-tra-vinh.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Bảng giá Dừa Sáp Trà Vinh Loại 1 cập nhật mới nhất</a></li>
+        </ul>
+      </section>
     </article>
   </main>
+
+  <div class="sticky-bar">
+    <a href="https://zalo.me/0866786076" target="_blank" rel="noopener" class="s-btn" style="background: #eff6ff; color: #0068ff; border: 1px solid #bfdbfe;">💬 Chat Zalo</a>
+    <a href="tel:0866786076" class="s-btn" style="background: var(--leaf-100); color: var(--leaf-900);">📞 086.678.6076</a>
+    <a href="/?size=size_vua&qty=2#dat-hang" class="s-btn" style="background: var(--earth-gold); color: #fff;">🛒 Đặt 2 Trái Freeship</a>
+  </div>
 
   <footer>
     <p><strong>Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</strong></p>

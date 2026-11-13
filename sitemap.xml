@@ -20,10 +20,16 @@
       <image:title>Dừa Sáp Kẹo Sợi Trà Vinh</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://duasaptravinh.netlify.app/images/step2_nut_doi.jpg</video:thumbnail_loc>
-      <video:title>Cận Cảnh Bổ Dừa Sáp Cầu Kè Trà Vinh Loại 1 Kéo Sợi Đặc Ruột</video:title>
-      <video:description>Video thực tế gõ nhẹ sống dao tách đôi gáo dừa sáp loại 1 tại vườn Cầu Kè Trà Vinh lộ lớp cơm dày trắng ngần và nước sệt kẹo.</video:description>
-      <video:content_loc>https://duasaptravinh.netlify.app/images/video_dua_sap_moi.mp4</video:content_loc>
+      <video:thumbnail_loc>https://duasaptravinh.netlify.app/images/doi_dua.jpg</video:thumbnail_loc>
+      <video:title>ASMR Bổ Dừa Sáp Cầu Kè Trà Vinh Loại 1 Kéo Sợi Đặc Ruột</video:title>
+      <video:description>Cận cảnh tách đôi gáo dừa sáp Cầu Kè Trà Vinh trắng muốt, múc muỗng cơm sáp dẻo quánh kéo sợi óng ánh.</video:description>
+      <video:content_loc>https://duasaptravinh.netlify.app/images/asmr_bo_dua_keo_soi.mp4</video:content_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://duasaptravinh.netlify.app/images/ly_dam_sua.jpg</video:thumbnail_loc>
+      <video:title>Cách Làm Ly Dừa Sáp Dầm Sữa Đá Đậu Phộng Rang Chuẩn Vị Trà Vinh</video:title>
+      <video:description>Cơm dừa sáp dẻo quánh dầm sữa đặc đá bào và đậu phộng rang giòn rụm mát lạnh.</video:description>
+      <video:content_loc>https://duasaptravinh.netlify.app/images/asmr_dam_sua_dau_phong.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -70,6 +76,12 @@
   </url>
   <url>
     <loc>https://duasaptravinh.netlify.app/gia-dua-sap-tra-vinh.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://duasaptravinh.netlify.app/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

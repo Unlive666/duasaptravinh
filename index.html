@@ -681,21 +681,31 @@
 
     .inp-field {
       width: 100%;
+      min-height: 48px;
       padding: 13px 16px;
       border-radius: 14px;
-      border: 1.5px solid var(--border-soft);
-      font-size: 0.95rem;
+      border: 1.5px solid #bfa98e;
+      font-size: max(1rem, 1em);
       font-family: inherit;
       font-weight: 600;
       color: var(--coco-brown);
       background: #fff;
     }
-    .inp-field:focus {
-      outline: none;
+    @media (pointer: coarse) {
+      .inp-field { min-height: 52px; }
+    }
+    .inp-field:focus-visible, .inp-field:focus {
+      outline: 2px solid var(--leaf-700);
+      outline-offset: 1px;
       border-color: var(--leaf-700);
       box-shadow: 0 0 0 3px rgba(45, 102, 60, 0.12);
     }
     .inp-field.invalid { border-color: #dc2626; background: #fef2f2; }
+
+    .deferred-section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto none auto 620px;
+    }
 
     .row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
@@ -1039,7 +1049,7 @@
       <div class="hero-media">
         <div class="main-video-card">
           <div class="video-tag">🔴 Video Gõ Sống Dao Tách Đôi</div>
-          <video src="images/reel_keo_soi.mp4" poster="/.netlify/images?url=/images/doi_dua.jpg&w=640&q=82" autoplay muted loop playsinline controls preload="metadata"></video>
+          <video src="images/reel_keo_soi.mp4" width="360" height="480" poster="/.netlify/images?url=/images/doi_dua.jpg&w=640&q=82" autoplay muted loop playsinline controls preload="metadata"></video>
         </div>
         <div class="side-photos">
           <div class="side-photo-card" onclick="openLightbox('images/doi_dua.jpg')">
@@ -1187,27 +1197,27 @@
               <div class="f-group">
                 <label class="f-label" for="custName">
                   <span>Họ và tên người nhận *</span>
-                  <span class="f-err" id="errName">Nhập họ và tên</span>
+                  <span class="f-err" id="errName" aria-live="polite">Nhập họ và tên</span>
                 </label>
-                <input type="text" id="custName" class="inp-field" placeholder="Ví dụ: Nguyễn Văn An" required oninput="clearErr('custName','errName')">
+                <input type="text" id="custName" name="name" autocomplete="name" enterkeyhint="next" maxlength="100" aria-describedby="errName" class="inp-field" placeholder="Ví dụ: Nguyễn Văn An" required oninput="clearErr('custName','errName')" onblur="validateFieldOnBlur('custName')">
               </div>
 
               <div class="f-group">
                 <label class="f-label" for="custPhone">
                   <span>Số điện thoại nhận hàng *</span>
-                  <span class="f-err" id="errPhone">SĐT gồm 10 số</span>
+                  <span class="f-err" id="errPhone" aria-live="polite">SĐT gồm 10 số</span>
                 </label>
-                <input type="tel" id="custPhone" class="inp-field" placeholder="Ví dụ: 0912 345 678" required oninput="onPhoneInput()">
+                <input type="tel" id="custPhone" name="phone" autocomplete="tel" inputmode="tel" enterkeyhint="next" maxlength="15" aria-describedby="errPhone" class="inp-field" placeholder="Ví dụ: 0912 345 678" required oninput="onPhoneInput()" onblur="validateFieldOnBlur('custPhone')">
               </div>
             </div>
 
-            <!-- 1-LINE ADDRESS INPUT AS REQUESTED -->
+            <!-- 1-LINE / FLEXIBLE ADDRESS INPUT WITH NATIVE AUTOFILL -->
             <div class="f-group">
               <label class="f-label" for="custAddress">
-                <span>Địa chỉ nhận hàng (1 dòng duy nhất) *</span>
-                <span class="f-err" id="errAddress">Vui lòng nhập địa chỉ giao hàng</span>
+                <span>Địa chỉ nhận hàng (Số nhà, Đường, Xã/Phường, Tỉnh/TP) *</span>
+                <span class="f-err" id="errAddress" aria-live="polite">Vui lòng nhập địa chỉ giao hàng</span>
               </label>
-              <input type="text" id="custAddress" class="inp-field" placeholder="Nhập Số nhà, Đường, Phường/Xã, Quận/Huyện, Tỉnh/Thành..." required oninput="clearErr('custAddress','errAddress')">
+              <textarea id="custAddress" name="address" autocomplete="street-address" enterkeyhint="done" rows="2" maxlength="300" aria-describedby="errAddress" class="inp-field" style="resize: vertical; min-height: 56px; line-height: 1.45;" placeholder="Nhập Số nhà, Đường, Phường/Xã, Quận/Huyện, Tỉnh/Thành..." required oninput="clearErr('custAddress','errAddress')" onblur="validateFieldOnBlur('custAddress')"></textarea>
             </div>
 
             <!-- Anti-Bot Honeypot (Invisible to real customers, traps automated spam bots) -->
@@ -1239,6 +1249,14 @@
             <button type="submit" id="submitBtn" class="btn-submit">
               👉 XÁC NHẬN ĐẶT DỪA SÁP NGAY
             </button>
+
+            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-soft); text-align: center; font-size: 0.84rem; color: var(--coco-muted);">
+              <div style="margin-bottom: 8px;">Hoặc đặt nhanh không cần gõ phím (thợ vườn nghe máy liền):</div>
+              <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://zalo.me/0866786076" target="_blank" rel="noopener" onclick="prefillQuickChatCopy()" style="flex: 1; min-width: 140px; background: #eff6ff; color: #0068ff; border: 1px solid #bfdbfe; padding: 9px 12px; border-radius: 99px; font-weight: 700;">💬 Đặt Qua Zalo 086.678.6076</a>
+                <a href="https://m.me/150370248165187" target="_blank" rel="noopener" onclick="prefillQuickChatCopy()" style="flex: 1; min-width: 140px; background: #e7f3ff; color: #1877F2; border: 1px solid #bfdbfe; padding: 9px 12px; border-radius: 99px; font-weight: 700;">📘 Nhắn Messenger Vườn</a>
+              </div>
+            </div>
           </form>
         </div>
 
@@ -1301,44 +1319,44 @@
   </section>
 
   <!-- REAL VIDEOS AT GARDEN -->
-  <section id="video-vuon" style="background: var(--cream-warm); border-top: 1px solid var(--border-soft);">
+  <section id="video-vuon" class="deferred-section" style="background: var(--cream-warm); border-top: 1px solid var(--border-soft);">
     <div class="container">
       <div class="sec-head">
-        <span class="sec-tag">Người Thật • Việc Thật</span>
-        <h2 class="sec-title">Video Bổ Dừa Thực Tế Tại Vườn</h2>
-        <p class="sec-sub">Cận cảnh chất lượng cơm dừa dày dẻo và nước kẹo kéo sợi trước khi gửi đi cho khách</p>
+        <span class="sec-tag">Người Thật • Việc Thật • Âm Thanh ASMR</span>
+        <h2 class="sec-title">Cận Cảnh Bổ Dừa & Dầm Sữa Đá Tại Vườn</h2>
+        <p class="sec-sub">Bật loa để nghe tiếng tách gáo giòn tan, cơm sáp dẻo quánh kéo sợi và ly dừa dầm sữa đặc đậu phộng mát lạnh</p>
       </div>
 
       <div class="video-3grid">
         <div class="v-card">
           <div class="v-wrap">
-            <video src="images/video_dua_sap_moi.mp4" poster="/.netlify/images?url=/images/step2_nut_doi.jpg&w=540&q=80" controls preload="none" playsinline></video>
+            <video src="images/asmr_bo_dua_keo_soi.mp4" loading="lazy" width="360" height="480" poster="/.netlify/images?url=/images/doi_dua.jpg&w=540&q=80" controls preload="none" playsinline></video>
           </div>
-          <h3>1. Gõ Sống Dao Tách Đôi Kéo Sợi</h3>
-          <p>Gáo dừa vừa tách đôi lộ lớp sáp dẻo quánh kéo sợi hấp dẫn.</p>
+          <h3>1. ASMR Tách Đôi Gáo Kéo Sợi</h3>
+          <p>Hai nửa dừa sáp Cầu Kè trắng muốt, múc muỗng cơm dẻo quánh kéo sợi óng ánh.</p>
         </div>
 
         <div class="v-card">
           <div class="v-wrap">
-            <video src="images/reel_keo_soi.mp4" poster="/.netlify/images?url=/images/keo_soi.jpg&w=540&q=80" controls preload="none" playsinline></video>
+            <video src="images/asmr_dam_sua_dau_phong.mp4" loading="lazy" width="360" height="480" poster="/.netlify/images?url=/images/ly_dam_sua.jpg&w=540&q=80" controls preload="none" playsinline></video>
           </div>
-          <h3>2. Nước Dừa Sệt Quánh Như Mật</h3>
-          <p>Nước dừa cô đặc tự nhiên, múc tới đâu béo thơm tới đó.</p>
+          <h3>2. Ly Dừa Sáp Dầm Sữa Đậu Phộng</h3>
+          <p>Rưới sữa đặc sánh mịn lên đá bào, rắc đậu phộng rang giòn rụm chuẩn vị miền Tây.</p>
         </div>
 
         <div class="v-card">
           <div class="v-wrap">
-            <video src="images/reel_khui_vuon.mp4" poster="/.netlify/images?url=/images/dac_ruot.jpg&w=540&q=80" controls preload="none" playsinline></video>
+            <video src="images/video_dua_sap_moi.mp4" loading="lazy" width="360" height="480" poster="/.netlify/images?url=/images/step2_nut_doi.jpg&w=540&q=80" controls preload="none" playsinline></video>
           </div>
-          <h3>3. Cơm Dừa Trắng Ngần Đặc Ruột</h3>
-          <p>Lớp cơm sáp dày cộm mềm mịn như kem tươi chuẩn Cầu Kè.</p>
+          <h3>3. Thợ Vườn Gõ Sống Dao Thực Tế</h3>
+          <p>Mẹo gõ nhẹ lưng dao quanh bụng gáo tách đôi trái dừa sáp cực nhàn tại vườn Hòa Tân.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- SIMPLE 3-STEP GUIDE -->
-  <section id="cach-bo">
+  <section id="cach-bo" class="deferred-section">
     <div class="container">
       <div class="sec-head">
         <span class="sec-tag">Mẹo Nhỏ Dễ Làm</span>
@@ -1377,7 +1395,7 @@
   </section>
 
   <!-- FOOTER -->
-  <section id="cam-nang-dua-sap" style="background: #fff; border-top: 1px solid var(--border-soft); padding: 52px 0;">
+  <section id="cam-nang-dua-sap" class="deferred-section" style="background: #fff; border-top: 1px solid var(--border-soft); padding: 52px 0;">
     <div class="container">
       <div class="sec-head" style="margin-bottom: 28px;">
         <span class="sec-tag">Cẩm Nang & Chính Sách Nhà Vườn</span>
@@ -1387,6 +1405,7 @@
 
       <!-- AUTO-SEO ARTICLE LINKS -->
       <div id="seo-article-links" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 24px;">
+        <a href="/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html" style="background: var(--leaf-50); border: 1px solid var(--leaf-600); color: var(--leaf-900); padding: 8px 14px; border-radius: 99px; font-size: 0.84rem; font-weight: 700;">🏙️ Mua Dừa Sáp tại TP.HCM Giao 1 Ngày</a>
         <a href="/dua-sap-lam-qua-bieu-tet-bieu-sep-sang-trong.html" style="background: var(--leaf-50); border: 1px solid var(--leaf-600); color: var(--leaf-900); padding: 8px 14px; border-radius: 99px; font-size: 0.84rem; font-weight: 700;">🎁 Chọn Dừa Sáp VIP Làm Quà Biếu</a>
         <a href="/cach-lam-sinh-to-dua-sap-dam-sua-ngon.html" style="background: var(--leaf-50); border: 1px solid var(--leaf-600); color: var(--leaf-900); padding: 8px 14px; border-radius: 99px; font-size: 0.84rem; font-weight: 700;">🍧 Công thức Sinh Tố & Dừa Sáp Dầm Bơ</a>
         <a href="/ba-bau-an-dua-sap-co-tot-khong.html" style="background: var(--leaf-50); border: 1px solid var(--leaf-600); color: var(--leaf-900); padding: 8px 14px; border-radius: 99px; font-size: 0.84rem; font-weight: 700;">🤰 Bà bầu ăn Dừa Sáp có tốt không?</a>
@@ -1709,11 +1728,54 @@
     function onPhoneInput() {
       clearErr('custPhone', 'errPhone');
       updateVietQR();
+      onPhoneInputChanged();
     }
 
     function clearErr(inpId, errId) {
-      document.getElementById(inpId).classList.remove('invalid');
-      document.getElementById(errId).style.display = 'none';
+      const el = document.getElementById(inpId);
+      if (el) {
+        el.classList.remove('invalid');
+        el.removeAttribute('aria-invalid');
+      }
+      const errEl = document.getElementById(errId);
+      if (errEl) errEl.style.display = 'none';
+    }
+
+    function markInvalid(inpId, errId) {
+      const el = document.getElementById(inpId);
+      if (el) {
+        el.classList.add('invalid');
+        el.setAttribute('aria-invalid', 'true');
+      }
+      const errEl = document.getElementById(errId);
+      if (errEl) errEl.style.display = 'inline';
+    }
+
+    function validateFieldOnBlur(inpId) {
+      const el = document.getElementById(inpId);
+      if (!el || !el.value.trim()) return;
+      const val = el.value.trim();
+      if (inpId === 'custName' && (val.length < 2 || val.length > 100)) {
+        markInvalid('custName', 'errName');
+      } else if (inpId === 'custPhone') {
+        const cleanPhone = val.replace(/[\s\.\-]/g, '');
+        if (!/^(0|\+84)(3|5|7|8|9)\d{8}$/.test(cleanPhone)) {
+          markInvalid('custPhone', 'errPhone');
+        }
+      } else if (inpId === 'custAddress' && (val.length < 5 || val.length > 300)) {
+        markInvalid('custAddress', 'errAddress');
+      }
+    }
+
+    function prefillQuickChatCopy() {
+      const prod = PRODUCTS[selectedSize] || PRODUCTS['size_vua'];
+      const subtotal = prod.price * selectedQty;
+      const ship = selectedQty >= 2 ? 0 : 30000;
+      const total = subtotal + ship;
+      const msg = `Chào vườn Dừa Sáp Cầu Kè, mình muốn đặt ${selectedQty} trái ${prod.label} (Tổng ${formatMoney(total)}${selectedQty >= 2 ? ' - Freeship' : ''}). Tư vấn giúp mình nhé!`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg).catch(() => {});
+      }
     }
 
     async function submitOrder(e) {
@@ -1734,28 +1796,29 @@
         return;
       }
 
-      let err = false;
+      let firstInvalidId = null;
       const rawName = document.getElementById('custName').value.trim();
       const rawPhone = document.getElementById('custPhone').value.trim();
       const rawAddress = document.getElementById('custAddress').value.trim();
       const cleanPhone = rawPhone.replace(/[\s\.\-]/g, '');
 
       if (rawName.length < 2 || rawName.length > 100) {
-        document.getElementById('custName').classList.add('invalid');
-        document.getElementById('errName').style.display = 'inline';
-        err = true;
+        markInvalid('custName', 'errName');
+        firstInvalidId = firstInvalidId || 'custName';
       }
       if (!/^(0|\+84)(3|5|7|8|9)\d{8}$/.test(cleanPhone)) {
-        document.getElementById('custPhone').classList.add('invalid');
-        document.getElementById('errPhone').style.display = 'inline';
-        err = true;
+        markInvalid('custPhone', 'errPhone');
+        firstInvalidId = firstInvalidId || 'custPhone';
       }
       if (rawAddress.length < 5 || rawAddress.length > 300) {
-        document.getElementById('custAddress').classList.add('invalid');
-        document.getElementById('errAddress').style.display = 'inline';
-        err = true;
+        markInvalid('custAddress', 'errAddress');
+        firstInvalidId = firstInvalidId || 'custAddress';
       }
-      if (err) return;
+      if (firstInvalidId) {
+        const badEl = document.getElementById(firstInvalidId);
+        if (badEl) badEl.focus();
+        return;
+      }
 
       const safeName = escapeHtml(rawName);
       const safePhone = escapeHtml(cleanPhone);
@@ -1859,6 +1922,16 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Auto-select size & qty from Deep-Link URL (?size=size_vua&qty=2)
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const qSize = params.get('size');
+        const qQty = parseInt(params.get('qty') || '', 10);
+        if (qSize && PRODUCTS[qSize]) selectedSize = qSize;
+        if (!Number.isNaN(qQty) && qQty >= 1 && qQty <= 50) selectedQty = qQty;
+      } catch (e) {}
+
+      // 2. Restore returning customer profile
       try {
         const saved = JSON.parse(localStorage.getItem('duasap_customer') || 'null');
         if (saved) {
@@ -1867,9 +1940,48 @@
           if (saved.address) document.getElementById('custAddress').value = saved.address;
         }
       } catch (e) {}
+
+      // 3. Respect prefers-reduced-motion for autoplay videos
+      const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function syncReducedMotion(prefersReduced) {
+        for (const video of document.querySelectorAll('video[autoplay]')) {
+          if (prefersReduced) {
+            video.removeAttribute('autoplay');
+            video.pause();
+          }
+        }
+      }
+      syncReducedMotion(reducedMotionQuery.matches);
+      reducedMotionQuery.addEventListener('change', (ev) => syncReducedMotion(ev.matches));
+
+      // 4. IntersectionObserver fallback for lazy-loaded below-the-fold videos
+      if (!Object.hasOwn(HTMLMediaElement.prototype, 'loading')) {
+        const lazyVideos = document.querySelectorAll('video[loading="lazy"]');
+        const mediaObserver = new IntersectionObserver((entries, obs) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const media = entry.target;
+            if (media.dataset.poster) {
+              media.poster = media.dataset.poster;
+              delete media.dataset.poster;
+            }
+            media.load();
+            obs.unobserve(media);
+          }
+        }, { rootMargin: '200px 0px' });
+        for (const media of lazyVideos) {
+          if (media.hasAttribute('poster')) {
+            media.dataset.poster = media.getAttribute('poster');
+            media.removeAttribute('poster');
+          }
+          media.preload = 'none';
+          mediaObserver.observe(media);
+        }
+      }
+
+      // 5. Abandoned cart hooks
       const phoneInput = document.getElementById('custPhone');
       if (phoneInput) {
-        phoneInput.addEventListener('input', onPhoneInputChanged);
         phoneInput.addEventListener('blur', () => {
           const cleanPhone = phoneInput.value.replace(/[\s\.\-]/g, '');
           if (/^(0|\+84)(3|5|7|8|9)\d{8}$/.test(cleanPhone)) {
@@ -1883,7 +1995,7 @@
           checkAbandonedCart();
         }
       });
-      window.addEventListener('beforeunload', () => {
+      window.addEventListener('pagehide', () => {
         checkAbandonedCart();
       });
 
