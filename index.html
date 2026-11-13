@@ -14,7 +14,10 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://duasaptravinh.netlify.app/">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1b3b24">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <meta name="theme-color" content="#163822">
 
   <!-- Local SEO Geo Tags (Xã Hòa Tân, Huyện Cầu Kè, Tỉnh Trà Vinh) -->
   <meta name="geo.region" content="VN-51">
@@ -29,7 +32,9 @@
   <meta property="og:url" content="https://duasaptravinh.netlify.app/">
   <meta property="og:title" content="Dừa Sáp Trà Vinh Cầu Kè Loại 1 - Đặc Ruột Kẹo Sợi | Bao Ăn 1 Đổi 1">
   <meta property="og:description" content="Hái trực tiếp tại vườn Hòa Tân, Cầu Kè, Trà Vinh. Cơm dẻo quánh, nước kẹo ngậy béo. Mua 2 trái miễn phí ship toàn quốc, tặng kèm sữa đặc & đậu phộng rang!">
-  <meta property="og:image" content="https://duasaptravinh.netlify.app/images/doi_dua.jpg">
+  <meta property="og:image" content="https://duasaptravinh.netlify.app/images/brand/og-banner-1200x630.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   
   <!-- Organic Vietnamese Fonts: Lora (Warm Artisanal Serif) & Quicksand (Soft Organic Sans) -->
   <link rel="preload" as="image" href="/.netlify/images?url=/images/doi_dua.jpg&w=640&q=82" fetchpriority="high">
@@ -46,7 +51,8 @@
         "@type": "LocalBusiness",
         "@id": "https://duasaptravinh.netlify.app/#localbusiness",
         "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc",
-        "image": "https://duasaptravinh.netlify.app/images/vuon_dua.jpg",
+        "logo": "https://duasaptravinh.netlify.app/images/brand/icon-512.png",
+        "image": "https://duasaptravinh.netlify.app/images/brand/og-banner-1200x630.jpg",
         "url": "https://duasaptravinh.netlify.app/",
         "telephone": "+84866786076",
         "priceRange": "99.000đ - 169.000đ",
@@ -187,39 +193,44 @@
 
   <style>
     :root {
-      --leaf-900: #1b3b24;
-      --leaf-800: #234d2e;
-      --leaf-700: #2d663c;
+      --leaf-950: #102818;
+      --leaf-900: #163822;
+      --leaf-800: #1f4c2f;
+      --leaf-700: #2b663f;
       --leaf-600: #39824c;
-      --leaf-100: #e6f4ea;
-      --leaf-50: #f3faf5;
-      
-      --coco-brown: #4a3525;
-      --coco-muted: #6e5a4b;
-      --earth-gold: #c87d20;
-      --earth-gold-dark: #a66312;
+      --leaf-100: #e7f3eb;
+      --leaf-50: #f4faf6;
+
+      --coco-brown: #3e2b1d;
+      --coco-muted: #654f3f;
+      --earth-gold: #9d5b0d;
+      --earth-gold-dark: #7e4708;
+      --gold-ring: #d4942a;
+      --gold-foil: #f5d078;
       --earth-light: #fdf6e9;
-      
-      --cream-bg: #fbf8f3;
+
+      --cream-bg: #faf6ee;
       --cream-card: #ffffff;
-      --cream-warm: #f4eee4;
-      --border-soft: #e6dec8;
-      
-      --shadow-soft: 0 6px 24px -4px rgba(74, 53, 37, 0.07);
-      --shadow-card: 0 14px 34px -6px rgba(74, 53, 37, 0.11);
+      --cream-warm: #f2eadc;
+      --border-soft: #e2d7c2;
+
+      --shadow-soft: 0 6px 24px -4px rgba(62, 43, 29, 0.08);
+      --shadow-card: 0 14px 34px -6px rgba(62, 43, 29, 0.12);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; max-width: 100%; }
     body {
       font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 600;
       color: var(--coco-brown);
       background-color: var(--cream-bg);
       line-height: 1.6;
-      overflow-x: hidden;
+      overflow-x: clip;
+      max-width: 100%;
       -webkit-font-smoothing: antialiased;
     }
+    .hero-grid > *, .hero-media > *, .order-box > *, .pricing-grid > *, .video-3grid > *, .guide-3grid > * { min-width: 0; }
 
     h1, h2, h3, h4, .organic-serif {
       font-family: 'Lora', Georgia, serif;
@@ -228,6 +239,10 @@
     }
 
     a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--gold-ring);
+      outline-offset: 2px;
+    }
     img, video { max-width: 100%; display: block; }
 
     .container {
@@ -244,17 +259,18 @@
       padding: 8px 14px;
       font-size: 0.85rem;
       text-align: center;
+      border-bottom: 1px solid rgba(212, 148, 42, 0.35);
     }
-    .top-bar strong { color: #fcd34d; }
+    .top-bar strong { color: var(--gold-foil); }
 
     /* HEADER */
     header {
-      background: rgba(251, 248, 243, 0.95);
+      background: rgba(250, 246, 238, 0.96);
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 200;
-      border-bottom: 1px solid var(--border-soft);
+      border-bottom: 1.5px solid var(--border-soft);
     }
     .nav-bar {
       display: flex;
@@ -267,16 +283,16 @@
     }
     .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
     .brand-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       flex-shrink: 0;
       border-radius: 50%;
-      background: var(--leaf-800);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      box-shadow: 0 3px 10px rgba(22, 56, 34, 0.22);
     }
+    .brand-icon svg { width: 42px; height: 42px; display: block; }
     .brand-title {
       font-family: 'Lora', serif;
       font-weight: 700;
@@ -513,7 +529,7 @@
     }
     .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
     .price-card.featured {
-      border: 2.5px solid var(--leaf-700);
+      border: 2.5px solid var(--gold-ring);
       background: #ffffff;
     }
     .best-badge {
@@ -522,12 +538,14 @@
       left: 50%;
       transform: translateX(-50%);
       background: var(--earth-gold);
+      border: 1.5px solid var(--gold-foil);
       color: #fff;
       font-size: 0.76rem;
       font-weight: 700;
       padding: 4px 16px;
       border-radius: 99px;
       white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(157, 91, 13, 0.28);
     }
     .price-img-wrap {
       height: 200px;
@@ -963,7 +981,8 @@
       .top-bar { font-size: 0.76rem; padding: 6px 10px; }
       .nav-bar { min-height: 58px; padding-top: 6px; padding-bottom: 6px; gap: 6px; }
       .brand { gap: 8px; }
-      .brand-icon { width: 34px; height: 34px; font-size: 1.05rem; }
+      .brand-icon { width: 36px; height: 36px; }
+      .brand-icon svg { width: 36px; height: 36px; }
       .brand-title { font-size: 1.02rem; white-space: nowrap; }
       .brand-sub { font-size: 0.68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 155px; }
       .btn-phone { display: none; }
@@ -977,27 +996,51 @@
       .qr-grid { grid-template-columns: 105px 1fr; gap: 10px; }
       .qr-img-box { width: 105px; height: 105px; }
     }
+    @media (max-width: 440px) {
+      .container { padding: 0 14px; }
+      .brand-title { font-size: 0.94rem; }
+      .brand-sub { max-width: 135px; font-size: 0.66rem; }
+      .btn-fb-top span { display: none; }
+      .btn-fb-top { padding: 8px; }
+      .btn-order-top { padding: 8px 12px; font-size: 0.78rem; }
+      .hero h1 { font-size: 1.68rem; }
+      .hero-btns a { max-width: 100%; font-size: 0.88rem; }
+      .m-btn { font-size: 0.71rem; padding: 9px 2px; min-width: 0; }
+    }
   </style>
 </head>
 <body>
 
   <!-- TOP BAR -->
   <div class="top-bar">
-    🥥 Dừa Sáp Cầu Kè Trà Vinh Hái Mới Sáng <span id="daily-orchard-date">13/11/2026</span> • <strong>Freeship Toàn Quốc Từ 2 Trái</strong> • Bao Sáp 1 Đổi 1
+    ✦ Dừa Sáp Cầu Kè Trà Vinh Hái Mới Sáng <span id="daily-orchard-date">13/11/2026</span> • <strong>Freeship Toàn Quốc Từ 2 Trái</strong> • Bao Sáp 1 Đổi 1
   </div>
 
   <!-- HEADER -->
   <header>
     <div class="container nav-bar">
       <a href="#" class="brand">
-        <div class="brand-icon">🥥</div>
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="42" height="42" fill="none">
+            <circle cx="32" cy="32" r="30" fill="#163822"/>
+            <circle cx="32" cy="32" r="27" stroke="#D4942A" stroke-width="1.6"/>
+            <path d="M15 24C12 18 15 12 22 10C18 14 17 19 18 24Z" fill="#D4942A" opacity="0.9"/>
+            <path d="M49 24C52 18 49 12 42 10C46 14 47 19 46 24Z" fill="#D4942A" opacity="0.9"/>
+            <circle cx="32" cy="34" r="16.5" fill="#5E3C23" stroke="#D4942A" stroke-width="1.4"/>
+            <circle cx="32" cy="34" r="13" fill="#FAF6EE"/>
+            <circle cx="32" cy="34.5" r="5.5" fill="#163822" opacity="0.14"/>
+            <path d="M32 29.5C32 29.5 35.8 33.8 35.8 36.4C35.8 38.5 34.1 40.2 32 40.2C29.9 40.2 28.2 38.5 28.2 36.4C28.2 33.8 32 29.5 32 29.5Z" fill="#D4942A"/>
+            <circle cx="30.8" cy="35.6" r="1" fill="#FFFDF8" opacity="0.85"/>
+            <circle cx="32" cy="9.5" r="1.5" fill="#F5D078"/>
+          </svg>
+        </div>
         <div>
           <span class="brand-title">Vựa Dừa Sáp Cầu Kè</span>
           <span class="brand-sub">Đặc Sản Trà Vinh Loại 1</span>
         </div>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Điều hướng chính">
         <a href="#bang-gia">Chọn Size & Giá</a>
         <a href="#dat-hang">Đặt Hàng Nhanh</a>
         <a href="#video-vuon">Video Thực Tế</a>
@@ -1006,7 +1049,7 @@
 
       <div class="nav-cta">
         <a href="https://www.facebook.com/duasaptravinhbaosap/" target="_blank" rel="noopener" class="btn-fb-top" title="Fanpage Facebook Vựa Dừa Sáp Cầu Kè">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           <span>Fanpage</span>
         </a>
         <a href="tel:0866786076" class="btn-phone">📞 086 678 6076</a>
@@ -1015,6 +1058,7 @@
     </div>
   </header>
 
+  <main>
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="container hero-grid">
@@ -1467,16 +1511,31 @@
       </div>
     </div>
   </section>
+  </main>
 
-  <footer>
+  <footer style="border-top: 2px solid var(--gold-ring);">
     <div class="container">
-      <h4 class="organic-serif footer-title">🥥 Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</h4>
+      <div style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+        <svg viewBox="0 0 64 64" width="38" height="38" fill="none" aria-hidden="true" style="flex-shrink: 0;">
+          <circle cx="32" cy="32" r="30" fill="#102818"/>
+          <circle cx="32" cy="32" r="27" stroke="#D4942A" stroke-width="1.6"/>
+          <path d="M15 24C12 18 15 12 22 10C18 14 17 19 18 24Z" fill="#D4942A" opacity="0.9"/>
+          <path d="M49 24C52 18 49 12 42 10C46 14 47 19 46 24Z" fill="#D4942A" opacity="0.9"/>
+          <circle cx="32" cy="34" r="16.5" fill="#5E3C23" stroke="#D4942A" stroke-width="1.4"/>
+          <circle cx="32" cy="34" r="13" fill="#FAF6EE"/>
+          <circle cx="32" cy="34.5" r="5.5" fill="#163822" opacity="0.14"/>
+          <path d="M32 29.5C32 29.5 35.8 33.8 35.8 36.4C35.8 38.5 34.1 40.2 32 40.2C29.9 40.2 28.2 38.5 28.2 36.4C28.2 33.8 32 29.5 32 29.5Z" fill="#D4942A"/>
+          <circle cx="30.8" cy="35.6" r="1" fill="#FFFDF8" opacity="0.85"/>
+          <circle cx="32" cy="9.5" r="1.5" fill="#F5D078"/>
+        </svg>
+        <h4 class="organic-serif footer-title" style="margin-bottom: 0;">Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</h4>
+      </div>
       <p style="margin-bottom: 6px;">📍 Địa chỉ vườn: Xã Hòa Tân, Huyện Cầu Kè, Tỉnh Trà Vinh • Giao hàng tận nơi toàn quốc</p>
       <p style="margin-bottom: 10px;">📞 Hotline / Zalo bảo hành 1 đổi 1: <strong style="color: #fff;">086 678 6076</strong></p>
 
       <div class="footer-socials">
         <a href="https://www.facebook.com/duasaptravinhbaosap/" target="_blank" rel="noopener" class="footer-social-btn" style="background: #1877F2; color: #fff;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           Fanpage Dừa Sáp Trà Vinh Bao Sáp
         </a>
         <a href="https://zalo.me/0866786076" target="_blank" rel="noopener" class="footer-social-btn" style="background: #0068ff; color: #fff;">
@@ -1485,12 +1544,12 @@
       </div>
 
       <div style="margin-bottom: 14px; font-size: 0.84rem; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="/gia-dua-sap-tra-vinh.html" style="text-decoration: underline; color: #fcd34d;">📖 Bảng giá Dừa Sáp Trà Vinh Loại 1</a>
-        <a href="/cach-phan-biet-dua-sap-that-gia.html" style="text-decoration: underline; color: #fcd34d;">🥥 Cách lắc & chọn Dừa Sáp thật giả</a>
-        <a href="/cach-an-va-bao-quan-dua-sap.html" style="text-decoration: underline; color: #fcd34d;">🍧 5 Cách chế biến & bảo quản</a>
-        <a href="/dua-sap-cau-ke-tra-vinh-chinh-goc.html" style="text-decoration: underline; color: #fcd34d;">🌿 Nguồn gốc Dừa Sáp Hòa Tân Cầu Kè</a>
+        <a href="/gia-dua-sap-tra-vinh.html" style="text-decoration: underline; color: var(--gold-foil);">📖 Bảng giá Dừa Sáp Trà Vinh Loại 1</a>
+        <a href="/cach-phan-biet-dua-sap-that-gia.html" style="text-decoration: underline; color: var(--gold-foil);">🥥 Cách lắc & chọn Dừa Sáp thật giả</a>
+        <a href="/cach-an-va-bao-quan-dua-sap.html" style="text-decoration: underline; color: var(--gold-foil);">🍧 5 Cách chế biến & bảo quản</a>
+        <a href="/dua-sap-cau-ke-tra-vinh-chinh-goc.html" style="text-decoration: underline; color: var(--gold-foil);">🌿 Nguồn gốc Dừa Sáp Hòa Tân Cầu Kè</a>
       </div>
-      <p style="font-size: 0.78rem; opacity: 0.75;">© 2026 Vựa Dừa Sáp Cầu Kè Trà Vinh. Chuyên sỉ & lẻ dừa sáp loại 1 toàn quốc.</p>
+      <p style="font-size: 0.78rem; opacity: 0.82;">© 2026 Vựa Dừa Sáp Cầu Kè Trà Vinh. Chuyên sỉ & lẻ dừa sáp loại 1 toàn quốc.</p>
     </div>
   </footer>
 

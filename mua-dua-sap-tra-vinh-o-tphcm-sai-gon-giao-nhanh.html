@@ -9,6 +9,10 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <link rel="canonical" href="https://duasaptravinh.netlify.app/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html">
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <meta name="theme-color" content="#163822">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Mua Dừa Sáp Trà Vinh Ở TP.HCM Ở Đâu Uy Tín? Giá Gốc Tại Vườn Giao Nhanh 1 Ngày">
   <meta property="og:description" content="Địa chỉ đặt mua Dừa Sáp Cầu Kè Trà Vinh Loại 1 chính gốc giao tận nhà TP.HCM (Sài Gòn), Bình Dương, Đồng Nai chỉ 1 ngày. Giá gốc tại vườn từ 99k, Freeship từ 2 trái, bao sáp 1 đổi 1.">
@@ -54,7 +58,11 @@
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh"
+        "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://duasaptravinh.netlify.app/images/brand/icon-512.png"
+        }
       }
     },
     {
@@ -82,41 +90,69 @@
 }
   </script>
   <style>
-    :root { --leaf-900: #1b3b24; --leaf-800: #234d2e; --leaf-700: #2d663c; --leaf-100: #e6f4ea; --leaf-50: #f3faf5; --coco-brown: #4a3525; --coco-muted: #6e5a4b; --earth-gold: #c87d20; --cream-bg: #fbf8f3; --border-soft: #e6dec8; }
+    :root { --leaf-950: #102818; --leaf-900: #163822; --leaf-800: #1f4c2f; --leaf-700: #2b663f; --leaf-100: #e7f3eb; --leaf-50: #f4faf6; --coco-brown: #3e2b1d; --coco-muted: #654f3f; --earth-gold: #9d5b0d; --earth-gold-dark: #7e4708; --gold-ring: #d4942a; --gold-foil: #f5d078; --cream-bg: #faf6ee; --border-soft: #e2d7c2; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.7; padding-bottom: 68px; }
     h1, h2, h3 { font-family: 'Lora', Georgia, serif; color: var(--leaf-900); line-height: 1.3; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold-ring); outline-offset: 2px; }
     .container { max-width: 840px; margin: 0 auto; padding: 0 18px; }
-    header { background: var(--leaf-900); color: #fff; padding: 14px 0; position: sticky; top: 0; z-index: 100; }
+    header { background: rgba(250, 246, 238, 0.96); backdrop-filter: blur(10px); border-bottom: 1.5px solid var(--border-soft); padding: 10px 0; position: sticky; top: 0; z-index: 100; }
     header .nav { display: flex; justify-content: space-between; align-items: center; max-width: 840px; margin: 0 auto; padding: 0 18px; gap: 10px; }
-    header a { color: #fff; text-decoration: none; font-weight: 700; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
+    .brand svg { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; box-shadow: 0 3px 10px rgba(22, 56, 34, 0.2); }
+    .brand-title { font-family: 'Lora', serif; font-weight: 700; font-size: 1.08rem; color: var(--leaf-900); display: block; line-height: 1.2; }
+    .brand-sub { font-size: 0.72rem; color: var(--coco-muted); display: block; line-height: 1.2; }
+    .nav-cta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .btn-phone { padding: 8px 13px; border-radius: 99px; background: var(--leaf-100); color: var(--leaf-800); font-weight: 700; font-size: 0.82rem; white-space: nowrap; text-decoration: none; }
+    .btn-order-top { background: var(--earth-gold); color: #fff; padding: 8px 16px; border-radius: 99px; font-size: 0.84rem; font-weight: 700; white-space: nowrap; text-decoration: none; }
+    .btn-order-top:hover { background: var(--earth-gold-dark); }
     .breadcrumb { font-size: 0.85rem; color: var(--coco-muted); margin: 18px 0; }
     .breadcrumb a { color: var(--leaf-700); text-decoration: underline; }
-    article { background: #fff; border: 1px solid var(--border-soft); border-radius: 20px; padding: 32px 26px; margin-bottom: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+    article { background: #fff; border: 1px solid var(--border-soft); border-radius: 20px; padding: 32px 26px; margin-bottom: 32px; box-shadow: 0 8px 24px rgba(62,43,29,0.06); }
     ul { padding-left: 20px; margin-top: 8px; }
     li { margin-bottom: 8px; }
     .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 16px; text-align: left; }
     .q-card { background: #fff; border: 1.5px solid var(--border-soft); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
-    .q-card.featured { border: 2px solid var(--leaf-700); background: #fffdf9; }
+    .q-card.featured { border: 2px solid var(--gold-ring); background: #fffdf9; }
     .q-btn { display: block; text-align: center; background: var(--leaf-800); color: #fff; padding: 10px 12px; border-radius: 99px; font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: 10px; }
     .q-card.featured .q-btn { background: var(--earth-gold); }
     .cta-box { background: var(--leaf-50); border: 2px solid var(--leaf-700); border-radius: 18px; padding: 24px 20px; text-align: center; margin-top: 28px; }
     .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); border-top: 1px solid var(--border-soft); padding: 8px 12px; display: flex; gap: 8px; justify-content: center; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); }
     .s-btn { flex: 1; max-width: 220px; padding: 11px 8px; border-radius: 99px; font-weight: 700; font-size: 0.82rem; text-align: center; text-decoration: none; white-space: nowrap; }
-    footer { background: var(--leaf-900); color: #e6dec8; text-align: center; padding: 32px 18px; font-size: 0.86rem; }
-    @media (max-width: 600px) { article { padding: 22px 16px; } h1 { font-size: 1.55rem !important; } }
+    footer { background: var(--leaf-900); border-top: 2px solid var(--gold-ring); color: #e2d7c2; text-align: center; padding: 34px 18px; font-size: 0.86rem; }
+    @media (max-width: 600px) { article { padding: 22px 16px; } h1 { font-size: 1.55rem !important; } .btn-phone { display: none; } .brand-title { font-size: 0.98rem; } }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <a href="/">🥥 Vựa Dừa Sáp Cầu Kè</a>
-      <a href="/?size=size_vua&qty=2#dat-hang" style="background: var(--earth-gold); padding: 7px 16px; border-radius: 99px; font-size: 0.85rem;">🛒 Đặt 2 Trái Freeship</a>
+      <a href="/" class="brand">
+        <svg viewBox="0 0 64 64" width="38" height="38" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#163822"/>
+          <circle cx="32" cy="32" r="27" stroke="#D4942A" stroke-width="1.6"/>
+          <path d="M15 24C12 18 15 12 22 10C18 14 17 19 18 24Z" fill="#D4942A" opacity="0.9"/>
+          <path d="M49 24C52 18 49 12 42 10C46 14 47 19 46 24Z" fill="#D4942A" opacity="0.9"/>
+          <circle cx="32" cy="34" r="16.5" fill="#5E3C23" stroke="#D4942A" stroke-width="1.4"/>
+          <circle cx="32" cy="34" r="13" fill="#FAF6EE"/>
+          <circle cx="32" cy="34.5" r="5.5" fill="#163822" opacity="0.14"/>
+          <path d="M32 29.5C32 29.5 35.8 33.8 35.8 36.4C35.8 38.5 34.1 40.2 32 40.2C29.9 40.2 28.2 38.5 28.2 36.4C28.2 33.8 32 29.5 32 29.5Z" fill="#D4942A"/>
+          <circle cx="30.8" cy="35.6" r="1" fill="#FFFDF8" opacity="0.85"/>
+          <circle cx="32" cy="9.5" r="1.5" fill="#F5D078"/>
+        </svg>
+        <div>
+          <span class="brand-title">Vựa Dừa Sáp Cầu Kè</span>
+          <span class="brand-sub">Đặc Sản Trà Vinh Loại 1</span>
+        </div>
+      </a>
+      <div class="nav-cta">
+        <a href="tel:0866786076" class="btn-phone">📞 086 678 6076</a>
+        <a href="/?size=size_vua&qty=2#dat-hang" class="btn-order-top">🛒 Đặt 2 Trái Freeship</a>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label="Phân cấp trang">
       <a href="/">Trang chủ</a> › <span>🏙️ Mua Dừa Sáp tại TP.HCM Giao 1 Ngày</span>
     </nav>
 
@@ -210,9 +246,20 @@
   </div>
 
   <footer>
-    <p><strong>Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</strong></p>
+    <div style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+      <svg viewBox="0 0 64 64" width="32" height="32" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#102818"/>
+        <circle cx="32" cy="32" r="27" stroke="#D4942A" stroke-width="1.6"/>
+        <path d="M15 24C12 18 15 12 22 10C18 14 17 19 18 24Z" fill="#D4942A" opacity="0.9"/>
+        <path d="M49 24C52 18 49 12 42 10C46 14 47 19 46 24Z" fill="#D4942A" opacity="0.9"/>
+        <circle cx="32" cy="34" r="16.5" fill="#5E3C23" stroke="#D4942A" stroke-width="1.4"/>
+        <circle cx="32" cy="34" r="13" fill="#FAF6EE"/>
+        <path d="M32 29.5C32 29.5 35.8 33.8 35.8 36.4C35.8 38.5 34.1 40.2 32 40.2C29.9 40.2 28.2 38.5 28.2 36.4C28.2 33.8 32 29.5 32 29.5Z" fill="#D4942A"/>
+      </svg>
+      <p style="font-family: 'Lora', serif; font-size: 1rem; color: #fff;"><strong>Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</strong></p>
+    </div>
     <p>Địa chỉ: Xã Hòa Tân, Huyện Cầu Kè, Tỉnh Trà Vinh | Hotline / Zalo: 086 678 6076</p>
-    <p style="margin-top: 8px;"><a href="/" style="color: #fcd34d; text-decoration: underline;">← Quay về Trang Chủ Đặt Hàng</a></p>
+    <p style="margin-top: 8px;"><a href="/" style="color: #f5d078; text-decoration: underline;">← Quay về Trang Chủ Đặt Hàng</a> • <a href="https://www.facebook.com/duasaptravinhbaosap/" target="_blank" rel="noopener" style="color: #f5d078; text-decoration: underline;">Fanpage Chính Thức</a></p>
   </footer>
 </body>
 </html>

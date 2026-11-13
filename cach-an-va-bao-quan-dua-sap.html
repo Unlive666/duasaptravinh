@@ -9,6 +9,10 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://duasaptravinh.netlify.app/cach-an-va-bao-quan-dua-sap.html">
   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#163822">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/brand/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -55,6 +59,11 @@
         "name": "Dừa Sáp Cầu Kè Dầm Sữa Đá Đậu Phộng Truyền Thống",
         "image": ["https://duasaptravinh.netlify.app/images/ly_dam_sua.jpg"],
         "author": { "@type": "Organization", "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh",
+          "logo": { "@type": "ImageObject", "url": "https://duasaptravinh.netlify.app/images/brand/icon-512.png" }
+        },
         "prepTime": "PT5M",
         "recipeYield": "4 ly",
         "recipeCategory": "Dessert",
@@ -77,7 +86,7 @@
   </script>
 
   <style>
-    :root { --leaf-900: #1b3b24; --leaf-800: #234d2e; --leaf-700: #2d663c; --leaf-100: #e6f4ea; --leaf-50: #f3faf5; --coco-brown: #4a3525; --coco-muted: #6e5a4b; --earth-gold: #c87d20; --cream-bg: #fbf8f3; --border-soft: #e6dec8; }
+    :root { --leaf-900: #163822; --leaf-800: #1b432a; --leaf-700: #1f4c2f; --leaf-100: #e7f3eb; --leaf-50: #f3faf5; --coco-brown: #3e2b1d; --coco-muted: #635347; --earth-gold: #9d5b0d; --earth-gold-hover: #7e4708; --gold-ring: #d4942a; --gold-foil: #f5d078; --cream-bg: #faf6ee; --border-soft: #e2d7c2; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.75; overflow-x: hidden; }
@@ -86,12 +95,15 @@
     h2 { font-size: 1.45rem; border-left: 4px solid var(--earth-gold); padding-left: 12px; }
     h3 { font-size: 1.18rem; color: var(--leaf-800); }
     a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-ring); outline-offset: 2px; border-radius: 4px; }
     .container { max-width: 860px; margin: 0 auto; padding: 0 18px; }
-    header { background: #fff; border-bottom: 1px solid var(--border-soft); padding: 14px 0; position: sticky; top: 0; z-index: 100; }
+    header { background: rgba(250, 246, 238, 0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-soft); padding: 12px 0; position: sticky; top: 0; z-index: 100; }
     .nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    .brand-link { font-family: 'Lora', serif; font-weight: 700; font-size: 1.12rem; color: var(--leaf-900); white-space: nowrap; }
-    .btn-cta { background: var(--earth-gold); color: #fff; padding: 10px 20px; border-radius: 99px; font-weight: 700; font-size: 0.92rem; display: inline-block; white-space: nowrap; }
-    article { background: #fff; padding: 36px; border-radius: 24px; border: 1px solid var(--border-soft); margin: 28px 0; box-shadow: 0 8px 28px rgba(74,53,37,0.06); }
+    .brand-link { font-family: 'Lora', serif; font-weight: 700; font-size: 1.06rem; color: var(--leaf-900); white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 3px 10px rgba(22, 56, 34, 0.2); }
+    .btn-cta { background: var(--earth-gold); color: #fff; padding: 10px 20px; border-radius: 99px; font-weight: 700; font-size: 0.9rem; display: inline-block; white-space: nowrap; transition: background 0.2s; }
+    .btn-cta:hover { background: var(--earth-gold-hover); }
+    article { background: #fff; padding: 36px; border-radius: 24px; border: 1px solid var(--border-soft); margin: 28px 0; box-shadow: 0 8px 28px rgba(62,43,29,0.06); }
     p { margin-bottom: 14px; font-size: 1rem; }
     ul, ol { margin: 0 0 16px 22px; }
     li { margin-bottom: 8px; }
@@ -100,24 +112,39 @@
     .toc-title { font-family: 'Lora', serif; font-weight: 700; color: var(--leaf-900); margin-bottom: 8px; font-size: 1.05rem; }
     .toc-box ol { margin-bottom: 0; }
     .toc-box a { color: var(--leaf-700); text-decoration: underline; font-size: 0.94rem; }
-    .recipe-box { background: #fffbeb; border: 1.5px solid #fde68a; padding: 20px; border-radius: 16px; margin: 18px 0; }
+    .recipe-box { background: #fdfaf3; border: 1.5px solid #e7d9bf; padding: 20px; border-radius: 16px; margin: 18px 0; }
     .order-banner { background: var(--leaf-100); border: 2px dashed var(--leaf-700); padding: 28px; border-radius: 20px; text-align: center; margin-top: 32px; }
     .silo-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
     .silo-card { background: var(--cream-bg); border: 1px solid var(--border-soft); padding: 14px; border-radius: 14px; font-size: 0.88rem; font-weight: 700; color: var(--leaf-800); }
-    @media (max-width: 640px) { .container { padding: 0 12px; } .brand-link { font-size: 0.96rem; } .btn-cta { padding: 8px 14px; font-size: 0.8rem; } article { padding: 22px 16px; border-radius: 18px; } h1 { font-size: 1.55rem; } .silo-links { grid-template-columns: 1fr; } }
+    .site-footer { background: var(--leaf-900); border-top: 3px solid var(--gold-ring); color: #ece4d4; padding: 34px 16px; margin-top: 40px; font-size: 0.86rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-family: 'Lora', serif; font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 8px; }
+    .footer-links a { color: var(--gold-foil); text-decoration: underline; }
+    @media (max-width: 640px) { .container { padding: 0 12px; } .brand-link { font-size: 0.94rem; } .brand-icon { width: 32px; height: 32px; } .btn-cta { padding: 8px 14px; font-size: 0.8rem; } article { padding: 22px 16px; border-radius: 18px; } h1 { font-size: 1.55rem; } .silo-links { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a href="index.html" class="brand-link">🥥 Vựa Dừa Sáp Cầu Kè</a>
-      <a href="index.html#dat-hang" class="btn-cta">🛒 Đặt Dừa Tại Vườn</a>
+      <a href="index.html" class="brand-link">
+        <svg class="brand-icon" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="#163822" />
+          <circle cx="32" cy="32" r="28" fill="none" stroke="#d4942a" stroke-width="1.6" />
+          <path d="M32 16 C23 12 15 16 12 22 C18 19 25 19 32 23 C39 19 46 19 52 22 C49 16 41 12 32 16 Z" fill="#f5d078" />
+          <circle cx="32" cy="36" r="12" fill="#3e2b1d" />
+          <circle cx="32" cy="36" r="9.5" fill="#faf6ee" />
+          <path d="M32 24 C34.5 29 36 31.5 36 34 A4 4 0 0 1 28 34 C28 31.5 29.5 29 32 24 Z" fill="#d4942a" />
+        </svg>
+        <span>Vựa Dừa Sáp Cầu Kè</span>
+      </a>
+      <a href="index.html#dat-hang" class="btn-cta">Đặt Dừa Tại Vườn</a>
     </div>
   </header>
 
-  <div class="container">
+  <main class="container">
     <article>
-      <p style="font-size:0.86rem; color:var(--leaf-700);">🏠 <a href="index.html" style="text-decoration:underline;">Trang chủ</a> › <span>Cách Bổ, Ăn & Bảo Quản Dừa Sáp</span></p>
+      <nav aria-label="Phân cấp trang" style="font-size:0.86rem; color:var(--leaf-700); margin-bottom:8px;"><a href="index.html" style="text-decoration:underline;">Trang chủ</a> &rsaquo; <span>Cách Bổ, Ăn & Bảo Quản Dừa Sáp</span></nav>
       
       <h1>Cách Bổ Dừa Sáp Cực Dễ Trong 30 Giây & 5 Công Thức Dầm Sữa Đá Ngon Chuẩn Quán</h1>
       <p style="color:var(--coco-muted); font-size:0.88rem;">✍️ Hướng dẫn bởi: Nhà vườn Dừa Sáp Cầu Kè Trà Vinh • Thời gian đọc: 5 phút</p>
@@ -203,6 +230,30 @@
         <a href="dua-sap-cau-ke-tra-vinh-chinh-goc.html" class="silo-card">🌴 Nguồn gốc dừa sáp Hòa Tân Cầu Kè & Giá trị dinh dưỡng →</a>
       </div>
     </article>
-  </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 64 64" width="32" height="32" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="#163822" />
+          <circle cx="32" cy="32" r="28" fill="none" stroke="#d4942a" stroke-width="1.8" />
+          <path d="M32 16 C23 12 15 16 12 22 C18 19 25 19 32 23 C39 19 46 19 52 22 C49 16 41 12 32 16 Z" fill="#f5d078" />
+          <circle cx="32" cy="36" r="12" fill="#3e2b1d" />
+          <circle cx="32" cy="36" r="9.5" fill="#faf6ee" />
+          <path d="M32 24 C34.5 29 36 31.5 36 34 A4 4 0 0 1 28 34 C28 31.5 29.5 29 32 24 Z" fill="#d4942a" />
+        </svg>
+        <span>Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</span>
+      </div>
+      <p>Địa chỉ vườn: Xã Hòa Tân, Huyện Cầu Kè, Tỉnh Trà Vinh • Hotline/Zalo: 086 678 6076</p>
+      <div class="footer-links">
+        <a href="index.html">Trang chủ Đặt Hàng</a>
+        <a href="gia-dua-sap-tra-vinh.html">Bảng giá Dừa Sáp</a>
+        <a href="cach-phan-biet-dua-sap-that-gia.html">Cách chọn Dừa Sáp</a>
+        <a href="cach-an-va-bao-quan-dua-sap.html">Cách ăn & Bảo quản</a>
+        <a href="dua-sap-cau-ke-tra-vinh-chinh-goc.html">Nguồn gốc Cầu Kè</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -9,6 +9,10 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://duasaptravinh.netlify.app/gia-dua-sap-tra-vinh.html">
   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#163822">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/brand/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -32,16 +36,20 @@
           "https://duasaptravinh.netlify.app/images/dua_sap_size_lon_vip.jpg"
         ],
         "datePublished": "2026-01-15T08:00:00+07:00",
-        "dateModified": "2026-11-06T08:00:00+07:00",
+        "dateModified": "2026-11-13T08:00:00+07:00",
         "author": { "@type": "Organization", "name": "Nghệ Nhân Vựa Dừa Sáp Cầu Kè Trà Vinh" },
-        "publisher": { "@type": "Organization", "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh" }
+        "publisher": {
+          "@type": "Organization",
+          "name": "Vựa Dừa Sáp Cầu Kè Trà Vinh",
+          "logo": { "@type": "ImageObject", "url": "https://duasaptravinh.netlify.app/images/brand/icon-512.png" }
+        }
       }
     ]
   }
   </script>
 
   <style>
-    :root { --leaf-900: #1b3b24; --leaf-800: #234d2e; --leaf-700: #2d663c; --leaf-100: #e6f4ea; --leaf-50: #f3faf5; --coco-brown: #4a3525; --coco-muted: #6e5a4b; --earth-gold: #c87d20; --cream-bg: #fbf8f3; --border-soft: #e6dec8; }
+    :root { --leaf-900: #163822; --leaf-800: #1b432a; --leaf-700: #1f4c2f; --leaf-100: #e7f3eb; --leaf-50: #f3faf5; --coco-brown: #3e2b1d; --coco-muted: #635347; --earth-gold: #9d5b0d; --earth-gold-hover: #7e4708; --gold-ring: #d4942a; --gold-foil: #f5d078; --cream-bg: #faf6ee; --border-soft: #e2d7c2; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--coco-brown); background: var(--cream-bg); line-height: 1.75; overflow-x: hidden; }
@@ -50,12 +58,15 @@
     h2 { font-size: 1.45rem; border-left: 4px solid var(--earth-gold); padding-left: 12px; }
     h3 { font-size: 1.18rem; color: var(--leaf-800); }
     a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-ring); outline-offset: 2px; border-radius: 4px; }
     .container { max-width: 860px; margin: 0 auto; padding: 0 16px; }
-    header { background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-soft); padding: 10px 0; position: sticky; top: 0; z-index: 100; }
+    header { background: rgba(250, 246, 238, 0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-soft); padding: 10px 0; position: sticky; top: 0; z-index: 100; }
     .nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    .brand-link { font-family: 'Lora', serif; font-weight: 700; font-size: 1.1rem; color: var(--leaf-900); white-space: nowrap; }
-    .btn-cta { background: var(--earth-gold); color: #fff; padding: 9px 16px; border-radius: 99px; font-weight: 700; font-size: 0.86rem; display: inline-block; white-space: nowrap; }
-    article { background: #fff; padding: 34px; border-radius: 24px; border: 1px solid var(--border-soft); margin: 22px 0; box-shadow: 0 8px 28px rgba(74,53,37,0.06); }
+    .brand-link { font-family: 'Lora', serif; font-weight: 700; font-size: 1.06rem; color: var(--leaf-900); white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 3px 10px rgba(22, 56, 34, 0.2); }
+    .btn-cta { background: var(--earth-gold); color: #fff; padding: 9px 16px; border-radius: 99px; font-weight: 700; font-size: 0.86rem; display: inline-block; white-space: nowrap; transition: background 0.2s; }
+    .btn-cta:hover { background: var(--earth-gold-hover); }
+    article { background: #fff; padding: 34px; border-radius: 24px; border: 1px solid var(--border-soft); margin: 22px 0; box-shadow: 0 8px 28px rgba(62,43,29,0.06); }
     p { margin-bottom: 14px; font-size: 1rem; }
     ul, ol { margin: 0 0 16px 20px; }
     li { margin-bottom: 8px; }
@@ -68,16 +79,22 @@
     table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 0.92rem; }
     th, td { padding: 12px 14px; border-bottom: 1px solid var(--border-soft); border-right: 1px solid var(--border-soft); text-align: left; vertical-align: middle; }
     th:last-child, td:last-child { border-right: none; }
-    th { background: var(--leaf-800); color: #fff; font-weight: 700; white-space: nowrap; }
-    .highlight-note { background: #fffbeb; border-left: 4px solid var(--earth-gold); padding: 16px; border-radius: 10px; margin: 18px 0; font-size: 0.95rem; }
+    th { background: var(--leaf-900); color: #fff; font-weight: 700; white-space: nowrap; }
+    .highlight-note { background: #fdfaf3; border-left: 4px solid var(--earth-gold); padding: 16px; border-radius: 10px; margin: 18px 0; font-size: 0.95rem; }
     .order-banner { background: var(--leaf-100); border: 2px dashed var(--leaf-700); padding: 24px 18px; border-radius: 20px; text-align: center; margin-top: 32px; }
     .silo-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
     .silo-card { background: var(--cream-bg); border: 1px solid var(--border-soft); padding: 14px; border-radius: 14px; font-size: 0.88rem; font-weight: 700; color: var(--leaf-800); }
+    .site-footer { background: var(--leaf-900); border-top: 3px solid var(--gold-ring); color: #ece4d4; padding: 34px 16px; margin-top: 40px; font-size: 0.86rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-family: 'Lora', serif; font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 8px; }
+    .footer-links a { color: var(--gold-foil); text-decoration: underline; }
     @media (max-width: 640px) {
       article { padding: 20px 14px; margin: 14px 0; }
       h1 { font-size: 1.5rem; }
       h2 { font-size: 1.25rem; }
-      .brand-link { font-size: 0.98rem; }
+      .brand-link { font-size: 0.94rem; }
+      .brand-icon { width: 32px; height: 32px; }
       .btn-cta { padding: 8px 13px; font-size: 0.78rem; }
       .silo-links { grid-template-columns: 1fr; }
     }
@@ -86,14 +103,24 @@
 <body>
   <header>
     <div class="container nav">
-      <a href="index.html" class="brand-link">🥥 Vựa Dừa Sáp Cầu Kè</a>
-      <a href="index.html#dat-hang" class="btn-cta">🛒 Đặt Dừa Tại Vườn</a>
+      <a href="index.html" class="brand-link">
+        <svg class="brand-icon" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="#163822" />
+          <circle cx="32" cy="32" r="28" fill="none" stroke="#d4942a" stroke-width="1.6" />
+          <path d="M32 16 C23 12 15 16 12 22 C18 19 25 19 32 23 C39 19 46 19 52 22 C49 16 41 12 32 16 Z" fill="#f5d078" />
+          <circle cx="32" cy="36" r="12" fill="#3e2b1d" />
+          <circle cx="32" cy="36" r="9.5" fill="#faf6ee" />
+          <path d="M32 24 C34.5 29 36 31.5 36 34 A4 4 0 0 1 28 34 C28 31.5 29.5 29 32 24 Z" fill="#d4942a" />
+        </svg>
+        <span>Vựa Dừa Sáp Cầu Kè</span>
+      </a>
+      <a href="index.html#dat-hang" class="btn-cta">Đặt Dừa Tại Vườn</a>
     </div>
   </header>
 
-  <div class="container">
+  <main class="container">
     <article>
-      <p style="font-size:0.86rem; color:var(--leaf-700);">🏠 <a href="index.html" style="text-decoration:underline;">Trang chủ</a> › <span>Bảng Giá Dừa Sáp Trà Vinh 2026</span></p>
+      <nav aria-label="Phân cấp trang" style="font-size:0.86rem; color:var(--leaf-700); margin-bottom:8px;"><a href="index.html" style="text-decoration:underline;">Trang chủ</a> &rsaquo; <span>Bảng Giá Dừa Sáp Trà Vinh 2026</span></nav>
       
       <h1>Giá Dừa Sáp Trà Vinh Cầu Kè Loại 1 Hôm Nay (2026) Bao Nhiêu 1 Trái?</h1>
       <p style="color:var(--coco-muted); font-size:0.88rem;">✍️ Thực hiện bởi: Nghệ nhân Vựa Dừa Sáp Cầu Kè (Xã Hòa Tân, Cầu Kè, Trà Vinh) • Cập nhật mới nhất: Tháng 11/2026</p>
@@ -208,6 +235,30 @@
         <a href="dua-sap-cau-ke-tra-vinh-chinh-goc.html" class="silo-card">🌴 Nguồn gốc dừa sáp Hòa Tân Cầu Kè & Giá trị dinh dưỡng →</a>
       </div>
     </article>
-  </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 64 64" width="32" height="32" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="#163822" />
+          <circle cx="32" cy="32" r="28" fill="none" stroke="#d4942a" stroke-width="1.8" />
+          <path d="M32 16 C23 12 15 16 12 22 C18 19 25 19 32 23 C39 19 46 19 52 22 C49 16 41 12 32 16 Z" fill="#f5d078" />
+          <circle cx="32" cy="36" r="12" fill="#3e2b1d" />
+          <circle cx="32" cy="36" r="9.5" fill="#faf6ee" />
+          <path d="M32 24 C34.5 29 36 31.5 36 34 A4 4 0 0 1 28 34 C28 31.5 29.5 29 32 24 Z" fill="#d4942a" />
+        </svg>
+        <span>Vựa Dừa Sáp Cầu Kè Trà Vinh - Loại 1 Chính Gốc</span>
+      </div>
+      <p>Địa chỉ vườn: Xã Hòa Tân, Huyện Cầu Kè, Tỉnh Trà Vinh • Hotline/Zalo: 086 678 6076</p>
+      <div class="footer-links">
+        <a href="index.html">Trang chủ Đặt Hàng</a>
+        <a href="gia-dua-sap-tra-vinh.html">Bảng giá Dừa Sáp</a>
+        <a href="cach-phan-biet-dua-sap-that-gia.html">Cách chọn Dừa Sáp</a>
+        <a href="cach-an-va-bao-quan-dua-sap.html">Cách ăn & Bảo quản</a>
+        <a href="dua-sap-cau-ke-tra-vinh-chinh-goc.html">Nguồn gốc Cầu Kè</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
