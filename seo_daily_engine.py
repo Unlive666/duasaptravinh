@@ -419,19 +419,27 @@ def generate_ai_seo_topic_gemini(existing_slugs: set) -> dict:
         '"hero_img":"images/doi_dua.jpg","faq_q1":"Câu hỏi 1?","faq_a1":"Trả lời 1","faq_q2":"Câu hỏi 2?","faq_a2":"Trả lời 2",'
         '"sections":[["1. Tiêu đề H2 mục 1","<p>Nội dung HTML chi tiết...</p>"],["2. Tiêu đề H2 mục 2","<p>Nội dung HTML chi tiết...</p>"]]}'
     )
-    for model in ["gemini-3.8-flash", "gemini-3.6-flash"]:
+    for model in ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite"]:
         try:
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}"
-            r = requests.post(
-                url,
-                json={
-                    "contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {"temperature": 0.6, "maxOutputTokens": 1800, "responseMimeType": "application/json", "thinkingConfig": {"thinkingBudget": 0}}
-                },
-                timeout=25
-            )
+            gen_cfg = {"temperature": 0.6, "maxOutputTokens": 2400, "responseMimeType": "application/json"}
+            if "lite" not in model:
+                gen_cfg["thinkingConfig"] = {"thinkingBudget": 0}
+            payload = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gen_cfg}
+            r = requests.post(url, json=payload, timeout=25)
+            if r.status_code == 400 and "thinkingConfig" in gen_cfg:
+                gen_cfg.pop("thinkingConfig", None)
+                r = requests.post(url, json=payload, timeout=25)
             if r.status_code == 200:
-                txt = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                cands = r.json().get("candidates", [])
+                if not cands or cands[0].get("finishReason") == "MAX_TOKENS":
+                    continue
+                parts = cands[0].get("content", {}).get("parts", [])
+                txt = "".join(
+                    p.get("text", "")
+                    for p in parts
+                    if isinstance(p, dict) and not p.get("thought")
+                ).strip()
                 txt = re.sub(r"^```(?:json)?|```$", "", txt, flags=re.MULTILINE).strip()
                 data = json.loads(txt)
                 slug = re.sub(r"[^a-z0-9\-]", "", data.get("slug", "").lower())
@@ -445,8 +453,47 @@ def generate_ai_seo_topic_gemini(existing_slugs: set) -> dict:
     return None
 
 
+def get_existing_related_articles(current_slug: str, limit: int = 4) -> list:
+    """Lấy tối đa `limit` bài viết đang tồn tại thật trên đĩa (tránh link 404) và xoay vòng theo slug."""
+    ignore_files = {"index.html", "google8b195b05e68e2c5d.html"}
+    queue_titles = {t["slug"]: t["title"] for t in SEO_TOPICS_QUEUE}
+    legacy_titles = {
+        "gia-dua-sap-tra-vinh": "Bảng giá Dừa Sáp Trà Vinh Loại 1 cập nhật mới nhất",
+        "cach-phan-biet-dua-sap-that-gia": "4 Tuyệt kỹ lắc & phân biệt Dừa Sáp thật giả chuẩn nhà vườn",
+        "cach-an-va-bao-quan-dua-sap": "Cách bổ dừa sáp 30 giây & 5 món dầm sữa đá ngon mê ly",
+        "dua-sap-cau-ke-tra-vinh-chinh-goc": "Nguồn gốc Dừa Sáp Hòa Tân Cầu Kè & giá trị dinh dưỡng",
+    }
+
+    candidates = []
+    for fname in sorted(os.listdir(BASE_DIR)):
+        if not fname.endswith(".html") or fname in ignore_files:
+            continue
+        slug = fname[:-5]
+        if slug == current_slug:
+            continue
+        title = queue_titles.get(slug) or legacy_titles.get(slug)
+        if not title:
+            try:
+                with open(os.path.join(BASE_DIR, fname), "r", encoding="utf-8") as f:
+                    head_chunk = f.read(2048)
+                m = re.search(r"<title>(.*?)</title>", head_chunk, re.IGNORECASE | re.DOTALL)
+                if m:
+                    title = m.group(1).strip()
+            except Exception:
+                title = ""
+        if not title:
+            title = slug.replace("-", " ").title()
+        candidates.append({"slug": slug, "title": title})
+
+    if not candidates:
+        return []
+    offset = sum(ord(c) for c in current_slug) % len(candidates)
+    rotated = candidates[offset:] + candidates[:offset]
+    return rotated[:limit]
+
+
 def render_article_html(topic: dict, today_iso: str) -> str:
-    """Sinh trang HTML chuẩn SEO & CRO 100% (Schema @graph, Quick Size Picker Deep-Links, Related Cluster, Sticky Mobile Bar)."""
+    """Sinh trang HTML chuẩn SEO & CRO 100% (Schema @graph, Quick Size Picker Deep-Links, Related Cluster, Messenger & Sticky Mobile Bar)."""
     sections_html = ""
     for h2_title, body_html in topic["sections"]:
         sections_html += f"""
@@ -457,12 +504,13 @@ def render_article_html(topic: dict, today_iso: str) -> str:
         </div>
       </section>"""
 
-    canonical_url = f"{SITE_URL}/{topic['slug']}.html"
+    canonical_url = f"{SITE_URL}/{topic['slug']}"
     hero_img_url = f"{SITE_URL}/{topic['hero_img']}"
+    messenger_url = f"https://m.me/150370248165187?ref=seo_{topic['slug']}"
 
-    related_items = [t for t in SEO_TOPICS_QUEUE if t["slug"] != topic["slug"]][:4]
+    related_items = get_existing_related_articles(topic["slug"], limit=4)
     related_links_html = "".join([
-        f'<li><a href="/{r["slug"]}.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">{r["title"]}</a></li>'
+        f'<li><a href="/{r["slug"]}" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">{r["title"]}</a></li>'
         for r in related_items
     ])
 
@@ -563,8 +611,8 @@ def render_article_html(topic: dict, today_iso: str) -> str:
     .q-btn {{ display: block; text-align: center; background: var(--leaf-800); color: #fff; padding: 10px 12px; border-radius: 99px; font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: 10px; }}
     .q-card.featured .q-btn {{ background: var(--earth-gold); }}
     .cta-box {{ background: var(--leaf-50); border: 2px solid var(--leaf-700); border-radius: 18px; padding: 24px 20px; text-align: center; margin-top: 28px; }}
-    .sticky-bar {{ position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); border-top: 1px solid var(--border-soft); padding: 8px 12px; display: flex; gap: 8px; justify-content: center; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); }}
-    .s-btn {{ flex: 1; max-width: 220px; padding: 11px 8px; border-radius: 99px; font-weight: 700; font-size: 0.82rem; text-align: center; text-decoration: none; white-space: nowrap; }}
+    .sticky-bar {{ position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); border-top: 1px solid var(--border-soft); padding: 8px 8px; display: flex; gap: 6px; justify-content: center; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); }}
+    .s-btn {{ flex: 1; min-width: 0; max-width: 220px; padding: 10px 4px; border-radius: 99px; font-weight: 700; font-size: clamp(0.7rem, 2.5vw, 0.82rem); text-align: center; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
     footer {{ background: var(--leaf-900); border-top: 2px solid var(--gold-ring); color: #e2d7c2; text-align: center; padding: 34px 18px; font-size: 0.86rem; }}
     @media (max-width: 600px) {{ header .nav {{ padding: 0 12px; gap: 8px; }} article {{ padding: 22px 16px; }} h1 {{ font-size: 1.55rem !important; }} .btn-phone {{ display: none; }} .brand svg {{ width: 34px; height: 34px; }} .brand-title {{ font-size: 0.94rem; }} .brand-sub {{ font-size: 0.66rem; }} .btn-order-top {{ padding: 7px 12px; font-size: 0.78rem; }} }}
   </style>
@@ -660,23 +708,29 @@ def render_article_html(topic: dict, today_iso: str) -> str:
             <a href="/?size=size_lon&qty=2#dat-hang" class="q-btn">Chọn 2 Trái VIP + Quà</a>
           </div>
         </div>
+
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px;">
+          <a href="{messenger_url}" target="_blank" rel="noopener" style="background: #1877F2; color: #fff; padding: 11px 18px; border-radius: 99px; font-weight: 700; font-size: 0.86rem; text-decoration: none;">📘 Chat Messenger Tư Vấn 24/7</a>
+          <a href="https://zalo.me/0866786076" target="_blank" rel="noopener" style="background: #eff6ff; color: #0068ff; border: 1px solid #bfdbfe; padding: 11px 18px; border-radius: 99px; font-weight: 700; font-size: 0.86rem; text-decoration: none;">💬 Nhắn Zalo 086 678 6076</a>
+        </div>
       </div>
 
       <section style="margin-top: 26px; padding-top: 18px; border-top: 1px dashed var(--border-soft);">
         <h3 style="font-size: 1.08rem; margin-bottom: 8px;">📖 Cẩm Nang Dừa Sáp Cầu Kè Liên Quan:</h3>
         <ul style="font-size: 0.9rem;">
           {related_links_html}
-          <li><a href="/cach-phan-biet-dua-sap-that-gia.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">4 Tuyệt kỹ lắc & phân biệt Dừa Sáp thật giả chuẩn nhà vườn</a></li>
-          <li><a href="/gia-dua-sap-tra-vinh.html" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Bảng giá Dừa Sáp Trà Vinh Loại 1 cập nhật mới nhất</a></li>
+          <li><a href="/cach-phan-biet-dua-sap-that-gia" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">4 Tuyệt kỹ lắc & phân biệt Dừa Sáp thật giả chuẩn nhà vườn</a></li>
+          <li><a href="/gia-dua-sap-tra-vinh" style="color: var(--leaf-700); font-weight: 700; text-decoration: underline;">Bảng giá Dừa Sáp Trà Vinh Loại 1 cập nhật mới nhất</a></li>
         </ul>
       </section>
     </article>
   </main>
 
   <div class="sticky-bar">
+    <a href="{messenger_url}" target="_blank" rel="noopener" class="s-btn" style="background: #e7f3ff; color: #1877F2; border: 1px solid #bfdbfe;">📘 Messenger</a>
     <a href="https://zalo.me/0866786076" target="_blank" rel="noopener" class="s-btn" style="background: #eff6ff; color: #0068ff; border: 1px solid #bfdbfe;">💬 Chat Zalo</a>
     <a href="tel:0866786076" class="s-btn" style="background: var(--leaf-100); color: var(--leaf-900);">📞 086.678.6076</a>
-    <a href="/?size=size_vua&qty=2#dat-hang" class="s-btn" style="background: var(--earth-gold); color: #fff;">🛒 Đặt 2 Trái Freeship</a>
+    <a href="/?size=size_vua&qty=2#dat-hang" class="s-btn" style="background: var(--earth-gold); color: #fff;">🛒 Đặt 2 Trái</a>
   </div>
 
   <footer>
@@ -722,8 +776,8 @@ def update_index_freshness_and_links(today_vn_str: str, new_article_info: dict =
 
     # 3. Thêm link bài viết mới vào khối #seo-article-links nếu chưa có
     if new_article_info:
-        href = f"/{new_article_info['slug']}.html"
-        if href not in html:
+        href = f"/{new_article_info['slug']}"
+        if f'href="{href}"' not in html:
             pill_html = (
                 f'        <a href="{href}" style="background: var(--leaf-50); border: 1px solid var(--leaf-600); '
                 f'color: var(--leaf-900); padding: 8px 14px; border-radius: 99px; font-size: 0.84rem; font-weight: 700;">'
@@ -749,7 +803,8 @@ def rebuild_sitemap(today_iso: str) -> list:
     urls = [f"{SITE_URL}/"]
     sub_entries = []
     for fname in html_files:
-        full_url = f"{SITE_URL}/{fname}"
+        slug = fname[:-5]
+        full_url = f"{SITE_URL}/{slug}"
         urls.append(full_url)
         sub_entries.append(f"""  <url>
     <loc>{full_url}</loc>
@@ -801,6 +856,32 @@ def rebuild_sitemap(today_iso: str) -> list:
     return urls
 
 
+def rebuild_netlify_redirects() -> int:
+    """Tạo file _redirects để ép toàn bộ traffic & Googlebot trên Netlify chuyển hướng 301! 1-hop sang Clean URL trên Vercel."""
+    ignore_files = {"google8b195b05e68e2c5d.html", "index.html"}
+    html_files = sorted([
+        f for f in os.listdir(BASE_DIR)
+        if f.endswith(".html") and f not in ignore_files
+    ])
+
+    lines = [
+        "# 301 Permanent Redirects: Consolidate SEO & Indexing from Netlify to Primary Vercel Domain",
+        "/google8b195b05e68e2c5d.html /google8b195b05e68e2c5d.html 200",
+        f"/index.html {SITE_URL}/ 301!",
+    ]
+    for fname in html_files:
+        slug = fname[:-5]
+        lines.append(f"/{fname} {SITE_URL}/{slug} 301!")
+
+    lines.append(f"/* {SITE_URL}/:splat 301!")
+    redirects_content = "\n".join(lines) + "\n"
+
+    with open(os.path.join(BASE_DIR, "_redirects"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(redirects_content)
+
+    return len(html_files)
+
+
 def ping_indexnow(url_list: list) -> int:
     """Ping IndexNow API (Bing, Cốc Cốc, Yandex, Naver, Seznam) để lập chỉ mục tức thì."""
     payload = {
@@ -846,6 +927,7 @@ def main():
     today_iso = now_vn.strftime("%Y-%m-%d")
     today_vn_str = now_vn.strftime("%d/%m/%Y")
     upgrade_existing = ("--upgrade-existing" in sys.argv)
+    sync_only = ("--sync-only" in sys.argv)
 
     print(f"🚀 [AUTO-SEO ENGINE V4.0] Khởi chạy ngày {today_vn_str} ({today_iso})")
 
@@ -856,6 +938,16 @@ def main():
                 with open(fp, "w", encoding="utf-8") as f:
                     f.write(render_article_html(t, today_iso))
                 print(f"♻️ Đã nâng cấp giao diện CRO cho bài cũ: {t['slug']}.html")
+                update_index_freshness_and_links(today_vn_str, t)
+                llms_path = os.path.join(BASE_DIR, "llms.txt")
+                if os.path.exists(llms_path):
+                    with open(llms_path, "r", encoding="utf-8") as f:
+                        llms_txt = f.read()
+                    new_line = f"- [{t['title']}]({SITE_URL}/{t['slug']})\n"
+                    if f"({SITE_URL}/{t['slug']})" not in llms_txt:
+                        llms_txt = llms_txt.rstrip() + "\n" + new_line
+                        with open(llms_path, "w", encoding="utf-8") as f:
+                            f.write(llms_txt)
 
     # 1. Tìm bài viết tiếp theo trong hàng đợi chưa được xuất bản
     created_article = None
@@ -863,26 +955,27 @@ def main():
         f[:-5] for f in os.listdir(BASE_DIR) if f.endswith(".html")
     }
 
-    for topic in SEO_TOPICS_QUEUE:
-        file_path = os.path.join(BASE_DIR, f"{topic['slug']}.html")
-        if not os.path.exists(file_path):
-            html_content = render_article_html(topic, today_iso)
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(html_content)
-            created_article = topic
-            print(f"✅ Đã sinh bài viết SEO mới từ Queue: {topic['slug']}.html")
-            break
+    if not sync_only:
+        for topic in SEO_TOPICS_QUEUE:
+            file_path = os.path.join(BASE_DIR, f"{topic['slug']}.html")
+            if not os.path.exists(file_path):
+                html_content = render_article_html(topic, today_iso)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(html_content)
+                created_article = topic
+                print(f"✅ Đã sinh bài viết SEO mới từ Queue: {topic['slug']}.html")
+                break
 
-    # 1b. Nếu hàng đợi tĩnh đã xuất bản hết -> dùng Gemini sinh bài mới tự động
-    if not created_article:
-        ai_topic = generate_ai_seo_topic_gemini(existing_slugs)
-        if ai_topic:
-            file_path = os.path.join(BASE_DIR, f"{ai_topic['slug']}.html")
-            html_content = render_article_html(ai_topic, today_iso)
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(html_content)
-            created_article = ai_topic
-            print(f"🤖 Đã sinh bài viết SEO mới bằng Gemini AI: {ai_topic['slug']}.html")
+        # 1b. Nếu hàng đợi tĩnh đã xuất bản hết -> dùng Gemini sinh bài mới tự động
+        if not created_article:
+            ai_topic = generate_ai_seo_topic_gemini(existing_slugs)
+            if ai_topic:
+                file_path = os.path.join(BASE_DIR, f"{ai_topic['slug']}.html")
+                html_content = render_article_html(ai_topic, today_iso)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(html_content)
+                created_article = ai_topic
+                print(f"🤖 Đã sinh bài viết SEO mới bằng Gemini AI: {ai_topic['slug']}.html")
 
     # 2. Cập nhật độ tươi mới trên trang chủ index.html & gắn link nội bộ
     update_index_freshness_and_links(today_vn_str, created_article)
@@ -893,22 +986,23 @@ def main():
         if os.path.exists(llms_path):
             with open(llms_path, "r", encoding="utf-8") as f:
                 llms_txt = f.read()
-            new_line = f"- [{created_article['title']}]({SITE_URL}/{created_article['slug']}.html)\n"
+            new_line = f"- [{created_article['title']}]({SITE_URL}/{created_article['slug']})\n"
             if new_line not in llms_txt:
                 llms_txt = llms_txt.rstrip() + "\n" + new_line
                 with open(llms_path, "w", encoding="utf-8") as f:
                     f.write(llms_txt)
 
-    # 4. Tái tạo sitemap.xml với lastmod = hôm nay
+    # 4. Tái tạo sitemap.xml với lastmod = hôm nay & đồng bộ _redirects Netlify -> Vercel
     all_urls = rebuild_sitemap(today_iso)
-    print(f"🗺️ Đã cập nhật sitemap.xml với {len(all_urls)} URLs (lastmod={today_iso})")
+    redirect_count = rebuild_netlify_redirects()
+    print(f"🗺️ Đã cập nhật sitemap.xml ({len(all_urls)} URLs) & _redirects ({redirect_count} bài -> 301! Vercel)")
 
     # 5. Ping IndexNow
     ping_status = ping_indexnow(all_urls)
 
     # 6. Gửi báo cáo về Telegram (khi chạy trên GitHub Actions có secret)
     if created_article:
-        article_line = f"📝 <b>Bài SEO mới xuất bản:</b>\n<a href='{SITE_URL}/{created_article['slug']}.html'>{created_article['title']}</a>\n"
+        article_line = f"📝 <b>Bài SEO mới xuất bản:</b>\n<a href='{SITE_URL}/{created_article['slug']}'>{created_article['title']}</a>\n"
     else:
         article_line = "🔄 <b>Cập nhật độ tươi mới (Freshness):</b> Đã làm mới dấu thời gian mẻ dừa hôm nay & toàn bộ Sitemap.\n"
 
