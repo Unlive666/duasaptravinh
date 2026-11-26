@@ -1,0 +1,20 @@
+# 301 Permanent Redirects: Consolidate SEO & Indexing from Netlify to Primary Vercel Domain
+/google8b195b05e68e2c5d.html /google8b195b05e68e2c5d.html 200
+/index.html https://duasaptravinh.vercel.app/ 301!
+/ba-bau-an-dua-sap-co-tot-khong.html https://duasaptravinh.vercel.app/ba-bau-an-dua-sap-co-tot-khong 301!
+/cach-an-va-bao-quan-dua-sap.html https://duasaptravinh.vercel.app/cach-an-va-bao-quan-dua-sap 301!
+/cach-bo-dua-sap-cuc-de-khong-can-dao-to.html https://duasaptravinh.vercel.app/cach-bo-dua-sap-cuc-de-khong-can-dao-to 301!
+/cach-lam-kem-dua-sap-che-dua-sap-tai-nha.html https://duasaptravinh.vercel.app/cach-lam-kem-dua-sap-che-dua-sap-tai-nha 301!
+/cach-lam-sinh-to-dua-sap-dam-sua-ngon.html https://duasaptravinh.vercel.app/cach-lam-sinh-to-dua-sap-dam-sua-ngon 301!
+/cach-phan-biet-dua-sap-that-gia.html https://duasaptravinh.vercel.app/cach-phan-biet-dua-sap-that-gia 301!
+/dua-sap-bao-nhieu-calo-an-co-beo-khong.html https://duasaptravinh.vercel.app/dua-sap-bao-nhieu-calo-an-co-beo-khong 301!
+/dua-sap-bi-chua-hay-hu-cach-nhan-biet.html https://duasaptravinh.vercel.app/dua-sap-bi-chua-hay-hu-cach-nhan-biet 301!
+/dua-sap-cau-ke-tra-vinh-chinh-goc.html https://duasaptravinh.vercel.app/dua-sap-cau-ke-tra-vinh-chinh-goc 301!
+/dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay.html https://duasaptravinh.vercel.app/dua-sap-gui-di-ha-noi-mien-bac-mat-may-ngay 301!
+/dua-sap-lam-qua-bieu-tet-bieu-sep-sang-trong.html https://duasaptravinh.vercel.app/dua-sap-lam-qua-bieu-tet-bieu-sep-sang-trong 301!
+/gia-dua-sap-tra-vinh.html https://duasaptravinh.vercel.app/gia-dua-sap-tra-vinh 301!
+/gia-si-dua-sap-tra-vinh-cho-quan-sinh-to-cafe.html https://duasaptravinh.vercel.app/gia-si-dua-sap-tra-vinh-cho-quan-sinh-to-cafe 301!
+/mua-dua-sap-da-nang-mien-trung-giao-tan-noi.html https://duasaptravinh.vercel.app/mua-dua-sap-da-nang-mien-trung-giao-tan-noi 301!
+/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh.html https://duasaptravinh.vercel.app/mua-dua-sap-tra-vinh-o-tphcm-sai-gon-giao-nhanh 301!
+/so-sanh-dua-sap-cau-ke-tra-vinh-va-dua-sap-khac.html https://duasaptravinh.vercel.app/so-sanh-dua-sap-cau-ke-tra-vinh-va-dua-sap-khac 301!
+/* https://duasaptravinh.vercel.app/:splat 301!
