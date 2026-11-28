@@ -1,0 +1,19 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/api/web-order"
+  to = "https://dua-sap-chatbot.onrender.com/api/web-order"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/abandoned-cart"
+  to = "https://dua-sap-chatbot.onrender.com/api/abandoned-cart"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/cdn-img/*"
+  to = "/images/:splat"
+  status = 200
